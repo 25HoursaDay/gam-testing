@@ -80,46 +80,46 @@
 <div id="centerdiv">
   <div id="letterparent">
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">1</span>
+      <span class="letter">1</span>
+      <span class="letter">1</span>
+      <span class="letter">1</span>
+      <span class="letter">1</span>
     </div>
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">2</span>
+      <span class="letter">2</span>
+      <span class="letter">2</span>
+      <span class="letter">2</span>
+      <span class="letter">2</span>
     </div>
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">3</span>
+      <span class="letter">3</span>
+      <span class="letter">3</span>
+      <span class="letter">3</span>
+      <span class="letter">3</span>
     </div>
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">4</span>
+      <span class="letter">4</span>
+      <span class="letter">4</span>
+      <span class="letter">4</span>
+      <span class="letter">4</span>
     </div>
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">5</span>
+      <span class="letter">5</span>
+      <span class="letter">5</span>
+      <span class="letter">5</span>
+      <span class="letter">5</span>
     </div>
     <div class="row">
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
-      <span class="letter">Q</span>
+      <span class="letter">6</span>
+      <span class="letter">6</span>
+      <span class="letter">6</span>
+      <span class="letter">6</span>
+      <span class="letter">6</span>
     </div>
   </div>
   <div class="keyboard">
@@ -160,14 +160,15 @@
   </div>
 </div>
 <script>
+  var guessesUsed = 0;
   const inputlist = [];
   const guesses = {
-    word1: [],
-    word2: [],
-    word3: [],
-    word4: [],
-    word5: [],
-    word6: []
+    word1: "",
+    word2: "",
+    word3: "",
+    word4: "",
+    word5: "",
+    word6: ""
   };
 
   function ygu(x) {
@@ -187,9 +188,23 @@
     inputlist.pop();
     console.log(inputlist);
   };
+  document.getElementById("enter").onclick = function() {
+    if (inputlist.length = 5 && guessesUsed < 5) {
+
+
+      console.log("you guessed: " + guesses[1]);
+      console.log(guessesUsed + " guesses used");
+    } else {
+      console.log("word is less than 5 letters.");
+    }
+    console.log(inputlist);
+  };
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
     console.log(document.getElementsByClassName("input")[i].innerText);
+  }
+  for (var i = (guessesUsed * 5); i < (guessesUsed * 5) + 5; i++) {
+    console.log(document.getElementsByClassName("letter")[i].innerText);
   }
 
 </script>

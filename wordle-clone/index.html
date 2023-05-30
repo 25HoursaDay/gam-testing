@@ -2,6 +2,13 @@
   body {
     display: flex;
     justify-content: center;
+
+  }
+
+  #centerdiv {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 
   #letterparent {
@@ -33,47 +40,103 @@
   }
 
 </style>
-<div id="letterparent">
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
+<div id="centerdiv">
+  <div id="letterparent">
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
+    <div class="row">
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+      <span class="letter">Q</span>
+    </div>
   </div>
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-  </div>
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-  </div>
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-  </div>
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-  </div>
-  <div class="row">
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
-    <span class="letter">Q</span>
+  <div class="keyboard">
+    <span class="input">Q</span>
+    <span class="input">W</span>
+    <span class="input">E</span>
+    <span class="input">R</span>
+    <span class="input">T</span>
+    <span class="input">Y</span>
+    <span class="input">U</span>
+    <span class="input">I</span>
+    <span class="input">O</span>
+    <span class="input">P</span>
+    <br>
+    <span class="input">A</span>
+    <span class="input">S</span>
+    <span class="input">D</span>
+    <span class="input">F</span>
+    <span class="input">G</span>
+    <span class="input">H</span>
+    <span class="input">J</span>
+    <span class="input">K</span>
+    <span class="input">L</span>
+    <br>
+    <button class="input">Enter</button>
+    <button class="input">Z</button>
+    <button class="input">X</button>
+    <button class="input">C</button>
+    <button class="input">V</button>
+    <button class="input">B</button>
+    <button class="input">N</button>
+    <button class="input">M</button>
+    <button class="input">Delete</button>
   </div>
 </div>
+<script>
+  const inputlist = [];
+  const guesses = {
+    word1: [],
+    word2: [],
+    word3: [],
+    word4: [],
+    word5: [],
+    word6: []
+  };
+
+  function ygu(x) {
+    document.getElementsByClassName("input")[x].onclick = function() {
+      console.log(this.innerText)
+    };
+  }
+  for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
+    ygu(i);
+    console.log(document.getElementsByClassName("input")[i].innerText);
+  }
+
+</script>

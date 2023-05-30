@@ -2,7 +2,6 @@
   body {
     display: flex;
     justify-content: center;
-
   }
 
   #centerdiv {
@@ -148,7 +147,7 @@
       <button class="input">L</button>
     </div>
     <div class="keyboardsplit">
-      <button class="enter">Enter</button>
+      <button id="enter" class="enter">Enter</button>
       <button class="input">Z</button>
       <button class="input">X</button>
       <button class="input">C</button>
@@ -156,7 +155,7 @@
       <button class="input">B</button>
       <button class="input">N</button>
       <button class="input">M</button>
-      <button class="delete">Delete</button>
+      <button id="delete" class="delete">Delete</button>
     </div>
   </div>
 </div>
@@ -175,13 +174,19 @@
     document.getElementsByClassName("input")[x].onclick = function() {
       console.log(this.innerText)
       if (inputlist.length > 4) {
-        console.log();
+        inputlist.pop();
+        inputlist.push(this.innerText);
+        console.log(inputlist);
       } else {
         inputlist.push(this.innerText);
         console.log(inputlist);
       }
     };
   }
+  document.getElementById("delete").onclick = function() {
+    inputlist.pop();
+    console.log(inputlist);
+  };
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
     console.log(document.getElementsByClassName("input")[i].innerText);

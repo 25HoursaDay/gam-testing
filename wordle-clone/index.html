@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   #letterparent {
@@ -37,6 +38,43 @@
     margin-right: 1px;
     text-align: center;
     box-sizing: border-box;
+  }
+
+  .keyboard {
+    margin-top: 5px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .keyboardsplit {
+    margin-top: 1px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .input {
+    width: 30px;
+  }
+
+  .enter,
+  .delete {
+    width: 60px;
+  }
+
+  .enter,
+  .delete,
+  .input {
+    text-align: center;
+    box-sizing: border-box;
+    padding: none;
+    height: 40px;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
   }
 
 </style>
@@ -86,36 +124,40 @@
     </div>
   </div>
   <div class="keyboard">
-    <span class="input">Q</span>
-    <span class="input">W</span>
-    <span class="input">E</span>
-    <span class="input">R</span>
-    <span class="input">T</span>
-    <span class="input">Y</span>
-    <span class="input">U</span>
-    <span class="input">I</span>
-    <span class="input">O</span>
-    <span class="input">P</span>
-    <br>
-    <span class="input">A</span>
-    <span class="input">S</span>
-    <span class="input">D</span>
-    <span class="input">F</span>
-    <span class="input">G</span>
-    <span class="input">H</span>
-    <span class="input">J</span>
-    <span class="input">K</span>
-    <span class="input">L</span>
-    <br>
-    <button class="input">Enter</button>
-    <button class="input">Z</button>
-    <button class="input">X</button>
-    <button class="input">C</button>
-    <button class="input">V</button>
-    <button class="input">B</button>
-    <button class="input">N</button>
-    <button class="input">M</button>
-    <button class="input">Delete</button>
+    <div class="keyboardsplit">
+      <button class="input">Q</button>
+      <button class="input">W</button>
+      <button class="input">E</button>
+      <button class="input">R</button>
+      <button class="input">T</button>
+      <button class="input">Y</button>
+      <button class="input">U</button>
+      <button class="input">I</button>
+      <button class="input">O</button>
+      <button class="input">P</button>
+    </div>
+    <div class="keyboardsplit">
+      <button class="input">A</button>
+      <button class="input">S</button>
+      <button class="input">D</button>
+      <button class="input">F</button>
+      <button class="input">G</button>
+      <button class="input">H</button>
+      <button class="input">J</button>
+      <button class="input">K</button>
+      <button class="input">L</button>
+    </div>
+    <div class="keyboardsplit">
+      <button class="enter">Enter</button>
+      <button class="input">Z</button>
+      <button class="input">X</button>
+      <button class="input">C</button>
+      <button class="input">V</button>
+      <button class="input">B</button>
+      <button class="input">N</button>
+      <button class="input">M</button>
+      <button class="delete">Delete</button>
+    </div>
   </div>
 </div>
 <script>

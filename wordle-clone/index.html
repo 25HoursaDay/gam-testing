@@ -263,7 +263,7 @@
       console.log("you guessed: " + guesses[guessesUsed++]);
       console.log(guessesUsed + " guesses used");
 
-      if (wordstring == word) {
+      if (buh == word) {
         winner(guessesUsed);
       } else {
         inputlist.length = 0;
@@ -284,9 +284,12 @@
     }
     document.getElementById("delete").onclick = "";
     document.getElementById("enter").onclick = "";
-    document.getElementById("winpopup").open();
-    document.getElementById("winpopuphead").innerText = "Congradulations!";
-    document.getElementById("winpopupdesc").innerText = "You guessed the word " + word + " in " + attempts + " attempts";
+    let winpopup = document.getElementById("winpopup");
+    let winpopuphead = document.getElementById("winpopuphead");
+    let winpopupdesc = document.getElementById("winpopupdesc");
+    winpopup.open = true;
+    winpopuphead.innerText = "Congradulations!";
+    winpopupdesc.innerText = "You guessed the word " + word + " in " + attempts + " attempt(s).";
   }
 
   function loser() {
@@ -296,9 +299,12 @@
     }
     document.getElementById("delete").onclick = "";
     document.getElementById("enter").onclick = "";
-    document.getElementById("losepopup").open();
-    document.getElementById("losepopuphead").innerText = "You Lost.";
-    document.getElementById("losepopupdesc").innerText = "The word was " + word + ".";
+    let losepopup = document.getElementById("losepopup");
+    let losepopuphead = document.getElementById("losepopuphead");
+    let losepopupdesc = document.getElementById("losepopupdesc");
+    losepopup.open = true;
+    losepopuphead.innerText = "You Lost.";
+    losepopupdesc.innerText = "The word was " + word + ".";
   }
 
 </script>

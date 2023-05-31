@@ -206,6 +206,7 @@
       guesses.push(buh);
       for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
         document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * 5)];
+        // check every letter for green and gray, then check for yellow
         if (word.includes(buh[i - (guessesUsed * 5)])) {
           if (word[i - (guessesUsed * 5)] == buh[i - (guessesUsed * 5)]) {
             document.getElementsByClassName("letter")[i].classList.add("correct");

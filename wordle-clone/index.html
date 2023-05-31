@@ -111,6 +111,14 @@
   }
 
 </style>
+<dialog id="winpopup" class="winpopup">
+  <h1 id="winpopuphead" class="winpopuphead">Congradulations!</h1><br>
+  <p id="winpopupdesc" class="winpopupdesc"></p>
+</dialog>
+<dialog id="losepopup" class="losepopup">
+  <h1 id="losepopuphead" class="losepopuphead">You Lost.</h1><br>
+  <p id="losepopupdesc" class="losepopupdesc"></p>
+</dialog>
 <div id="centerdiv">
   <h1 id="title">
     Wordle Clone
@@ -270,10 +278,27 @@
   }
 
   function winner(attempts) {
-    console.log("You guessed the word in " + attempts + " attempts");
+    console.log("You guessed the word " + word + " in " + attempts + " attempts");
     for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
       document.getElementsByClassName("input")[i].onclick = "";
     }
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    document.getElementById("winpopup").open();
+    document.getElementById("winpopuphead").innerText = "Congradulations!";
+    document.getElementById("winpopupdesc").innerText = "You guessed the word " + word + " in " + attempts + " attempts";
+  }
+
+  function loser() {
+    console.log("The word was " + word + ".");
+    for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
+      document.getElementsByClassName("input")[i].onclick = "";
+    }
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    document.getElementById("losepopup").open();
+    document.getElementById("losepopuphead").innerText = "You Lost.";
+    document.getElementById("losepopupdesc").innerText = "The word was " + word + ".";
   }
 
 </script>

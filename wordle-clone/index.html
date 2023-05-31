@@ -96,17 +96,20 @@
   }
 
   .noletter {
-    background-color: lightgray;
+    background-color: gray;
+    border-color: darkgray;
     color: white;
   }
 
   .wrongspot {
     background-color: yellow;
+    border-color: gold;
     color: white;
   }
 
   .correct {
     background-color: green;
+    border-color: limegreen;
     color: white;
   }
 
@@ -227,7 +230,7 @@
   </div>
 </div>
 <script>
-  var word = "HORNY";
+  var word = "AAAAA";
   var wordlength = word.length;
   var guessesUsed = 0;
   const inputlist = [];
@@ -265,20 +268,24 @@
         if (word.includes(buh[i - (guessesUsed * wordlength)])) {
           if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
             document.getElementsByClassName("letter")[i].classList.add("correct");
+            inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
             wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
           }
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
+          inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
           wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
         }
       }
       for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
         if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
           document.getElementsByClassName("letter")[i].classList.add("wrongspot");
+          inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
           wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
           console.log(wordstring);
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
+          inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
         }
       }
 
@@ -333,6 +340,15 @@
     losepopuphead.innerText = "You Lost.";
     losepopupdesc.innerText = "The word was " + word + ".";
     losepopup.classList.add("showpopup");
+  }
+
+
+  function inputchange(term, changeto) {
+    for (const x of document.querySelectorAll(".input")) {
+      if (x.textContent.includes(term)) {
+        x.classList.add(changeto);
+      }
+    }
   }
 
 </script>

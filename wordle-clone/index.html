@@ -1,4 +1,8 @@
 <style>
+  html {
+    font-family: "impact", "noto sans", "Helvetica", Arial, Roboto, Verdana;
+  }
+
   body {
     display: flex;
     justify-content: center;
@@ -9,6 +13,10 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
+  }
+
+  #title {
+    font-size: 50px;
   }
 
   #letterparent {
@@ -25,18 +33,22 @@
     display: flex;
     box-sizing: border-box;
     margin-top: 1px;
-    height: 50px;
+    height: 70px;
   }
 
   .letter {
     border: 2px gray solid;
     border-radius: 10px;
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
     margin-left: 1px;
     margin-right: 1px;
     text-align: center;
+    line-height: 70px;
     box-sizing: border-box;
+    font-weight: bold;
+    font-size: 35px;
+    color: black;
   }
 
   .keyboard {
@@ -48,7 +60,7 @@
   }
 
   .keyboardsplit {
-    margin-top: 1px;
+    margin-top: 2px;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -57,81 +69,94 @@
   }
 
   .input {
-    width: 30px;
+    width: 55px;
   }
 
   .enter,
   .delete {
-    width: 60px;
+    width: 115px;
   }
 
   .enter,
   .delete,
   .input {
+    color: black;
+    outline: none;
+    border: none;
+    background-color: lightgray;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 30px;
     text-align: center;
     box-sizing: border-box;
     padding: none;
-    height: 40px;
-    margin-left: 0.5px;
-    margin-right: 0.5px;
+    height: 65px;
+    margin-left: 1px;
+    margin-right: 1px;
   }
 
   .noletter {
-    background-color: darkgray;
+    background-color: lightgray;
+    color: white;
   }
 
   .wrongspot {
     background-color: yellow;
+    color: white;
   }
 
   .correct {
     background-color: green;
+    color: white;
   }
 
 </style>
 <div id="centerdiv">
+  <h1 id="title">
+    Wordle Clone
+  </h1>
   <div id="letterparent">
     <div class="row">
-      <span class="letter">1</span>
-      <span class="letter">1</span>
-      <span class="letter">1</span>
-      <span class="letter">1</span>
-      <span class="letter">1</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
     <div class="row">
-      <span class="letter">2</span>
-      <span class="letter">2</span>
-      <span class="letter">2</span>
-      <span class="letter">2</span>
-      <span class="letter">2</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
     <div class="row">
-      <span class="letter">3</span>
-      <span class="letter">3</span>
-      <span class="letter">3</span>
-      <span class="letter">3</span>
-      <span class="letter">3</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
     <div class="row">
-      <span class="letter">4</span>
-      <span class="letter">4</span>
-      <span class="letter">4</span>
-      <span class="letter">4</span>
-      <span class="letter">4</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
     <div class="row">
-      <span class="letter">5</span>
-      <span class="letter">5</span>
-      <span class="letter">5</span>
-      <span class="letter">5</span>
-      <span class="letter">5</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
     <div class="row">
-      <span class="letter">6</span>
-      <span class="letter">6</span>
-      <span class="letter">6</span>
-      <span class="letter">6</span>
-      <span class="letter">6</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
+      <span class="letter">?</span>
     </div>
   </div>
   <div class="keyboard">
@@ -173,27 +198,29 @@
 </div>
 <script>
   var word = "HORNY";
+  var wordlength = word.length;
   var guessesUsed = 0;
   const inputlist = [];
   var guesses = [];
 
   function ygu(x) {
     document.getElementsByClassName("input")[x].onclick = function() {
-      if (inputlist.length > 4) {
+      if (inputlist.length > (wordlength - 1)) {
         inputlist.pop();
-        document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (guessesUsed + 1);
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
         inputlist.push(this.innerText);
-        document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (inputlist[4]);
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
       } else {
         inputlist.push(this.innerText);
-        document.getElementsByClassName("letter")[(guessesUsed * 5) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
 
       }
     };
   }
   document.getElementById("delete").onclick = function() {
     inputlist.pop();
-    document.getElementsByClassName("letter")[(guessesUsed * 5) + inputlist.length].innerText = (guessesUsed + 1);
+    document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?" // or (guessesUsed + 1)
+    ;
     console.log(inputlist);
   };
 
@@ -201,24 +228,24 @@
     var wordstring = word.toString();
     var buh = inputlist.join("");
     console.log(word);
-    if (buh.length == 5 && guessesUsed < 5) {
+    if (buh.length == wordlength && guessesUsed < wordlength) {
       guesses.push(buh);
-      for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
-        document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * 5)];
-        if (word.includes(buh[i - (guessesUsed * 5)])) {
-          if (word[i - (guessesUsed * 5)] == buh[i - (guessesUsed * 5)]) {
+      for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+        document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
+        if (word.includes(buh[i - (guessesUsed * wordlength)])) {
+          if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
             document.getElementsByClassName("letter")[i].classList.add("correct");
-            wordstring = wordstring.replace((buh[i - (guessesUsed * 5)]), "");
+            wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
           }
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
-          wordstring = wordstring.replace((buh[i - (guessesUsed * 5)]), "");
+          wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
         }
       }
-      for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
-        if (wordstring.includes(buh[i - (guessesUsed * 5)])) {
+      for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+        if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
           document.getElementsByClassName("letter")[i].classList.add("wrongspot");
-          wordstring = wordstring.replace(buh[i - (guessesUsed * 5)], "");
+          wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
           console.log(wordstring);
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
@@ -227,14 +254,26 @@
 
       console.log("you guessed: " + guesses[guessesUsed++]);
       console.log(guessesUsed + " guesses used");
-      inputlist.length = 0;
+
+      if (wordstring == word) {
+        winner(guessesUsed);
+      } else {
+        inputlist.length = 0;
+      }
     } else {
-      console.log("word is less than 5 letters.");
+      console.log("word is less than " + wordlength + " letters.");
     }
   };
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
+  }
+
+  function winner(attempts) {
+    console.log("You guessed the word in " + attempts + " attempts");
+    for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
+      document.getElementsByClassName("input")[i].onclick = "";
+    }
   }
 
 </script>

@@ -172,23 +172,20 @@
   </div>
 </div>
 <script>
-  var word = "STORY";
+  var word = "HORNY";
   var guessesUsed = 0;
   const inputlist = [];
   var guesses = [];
 
   function ygu(x) {
     document.getElementsByClassName("input")[x].onclick = function() {
-      console.log(this.innerText)
       if (inputlist.length > 4) {
         inputlist.pop();
         document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (guessesUsed + 1);
         inputlist.push(this.innerText);
         document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (inputlist[4]);
-        console.log(inputlist);
       } else {
         inputlist.push(this.innerText);
-        console.log(inputlist);
         document.getElementsByClassName("letter")[(guessesUsed * 5) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
 
       }
@@ -201,31 +198,30 @@
   };
 
   document.getElementById("enter").onclick = function() {
-    var wordstring = word;
+    var wordstring = word.toString();
     var buh = inputlist.join("");
     console.log(word);
     if (buh.length == 5 && guessesUsed < 5) {
       guesses.push(buh);
       for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
         document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * 5)];
-        // check every letter for green and gray, then check for yellow
-
-
         if (word.includes(buh[i - (guessesUsed * 5)])) {
           if (word[i - (guessesUsed * 5)] == buh[i - (guessesUsed * 5)]) {
             document.getElementsByClassName("letter")[i].classList.add("correct");
-            wordstring.split(buh[i - (guessesUsed * 5)]).join("");
+            wordstring = wordstring.replace((buh[i - (guessesUsed * 5)]), "");
           }
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
-          wordstring.split(buh[i - (guessesUsed * 5)]).join("");
+          wordstring = wordstring.replace((buh[i - (guessesUsed * 5)]), "");
         }
-        console.log(i);
       }
       for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
         if (wordstring.includes(buh[i - (guessesUsed * 5)])) {
-          // add a way to check number of letters in word
           document.getElementsByClassName("letter")[i].classList.add("wrongspot");
+          wordstring = wordstring.replace(buh[i - (guessesUsed * 5)], "");
+          console.log(wordstring);
+        } else {
+          document.getElementsByClassName("letter")[i].classList.add("noletter");
         }
       }
 
@@ -239,7 +235,6 @@
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
-    console.log(document.getElementsByClassName("input")[i].innerText);
   }
 
 </script>

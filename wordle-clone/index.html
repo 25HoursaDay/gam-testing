@@ -162,14 +162,7 @@
 <script>
   var guessesUsed = 0;
   const inputlist = [];
-  const guesses = {
-    word1: "",
-    word2: "",
-    word3: "",
-    word4: "",
-    word5: "",
-    word6: ""
-  };
+  var guesses = [];
 
   function ygu(x) {
     document.getElementsByClassName("input")[x].onclick = function() {
@@ -188,23 +181,29 @@
     inputlist.pop();
     console.log(inputlist);
   };
+
   document.getElementById("enter").onclick = function() {
-    if (inputlist.length = 5 && guessesUsed < 5) {
+    var buh = inputlist.join("");
+    if (buh.length == 5 && guessesUsed < 5) {
+      guesses.push(buh);
+      console.log(guessesUsed);
+      for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
+        document.getElementsByClassName("letter")[i].innerText = inputlist[i];
+        console.log(i);
+      }
 
-
-      console.log("you guessed: " + guesses[1]);
+      console.log("you guessed: " + guesses[guessesUsed++]);
       console.log(guessesUsed + " guesses used");
+      inputlist.length = 0;
+      buh.length = 0;
     } else {
       console.log("word is less than 5 letters.");
     }
-    console.log(inputlist);
   };
+
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
     console.log(document.getElementsByClassName("input")[i].innerText);
-  }
-  for (var i = (guessesUsed * 5); i < (guessesUsed * 5) + 5; i++) {
-    console.log(document.getElementsByClassName("letter")[i].innerText);
   }
 
 </script>

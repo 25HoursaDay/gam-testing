@@ -186,16 +186,14 @@
     var buh = inputlist.join("");
     if (buh.length == 5 && guessesUsed < 5) {
       guesses.push(buh);
-      console.log(guessesUsed);
       for (var i = (guessesUsed * 5); i < ((guessesUsed * 5) + 5); i++) {
-        document.getElementsByClassName("letter")[i].innerText = inputlist[i];
+        document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * 5)];
         console.log(i);
       }
 
       console.log("you guessed: " + guesses[guessesUsed++]);
       console.log(guessesUsed + " guesses used");
       inputlist.length = 0;
-      buh.length = 0;
     } else {
       console.log("word is less than 5 letters.");
     }

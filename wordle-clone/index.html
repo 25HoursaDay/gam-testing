@@ -169,11 +169,16 @@
       console.log(this.innerText)
       if (inputlist.length > 4) {
         inputlist.pop();
+        document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (guessesUsed + 1);
         inputlist.push(this.innerText);
+        document.getElementsByClassName("letter")[(guessesUsed * 5) + 4].innerText = (inputlist[4]);
         console.log(inputlist);
       } else {
         inputlist.push(this.innerText);
         console.log(inputlist);
+
+        document.getElementsByClassName("letter")[(guessesUsed * 5) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+
       }
     };
   }

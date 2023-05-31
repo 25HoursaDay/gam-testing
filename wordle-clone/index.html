@@ -176,7 +176,6 @@
       } else {
         inputlist.push(this.innerText);
         console.log(inputlist);
-
         document.getElementsByClassName("letter")[(guessesUsed * 5) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
 
       }
@@ -184,6 +183,7 @@
   }
   document.getElementById("delete").onclick = function() {
     inputlist.pop();
+    document.getElementsByClassName("letter")[(guessesUsed * 5) + inputlist.length].innerText = (guessesUsed + 1);
     console.log(inputlist);
   };
 

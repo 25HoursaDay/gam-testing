@@ -110,13 +110,35 @@
     color: white;
   }
 
+  .losepopup,
+  .winpopup {
+    display: none;
+  }
+
+  .showpopup {
+    width: 70vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .closemodal {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+  }
+
 </style>
 <dialog id="winpopup" class="winpopup">
-  <h1 id="winpopuphead" class="winpopuphead">Congradulations!</h1><br>
+  <button class="closemodal" onclick='document.getElementById("winpopup").classList.remove("showpopup")'>X</button>
+  <h1 id="winpopuphead" class="winpopuphead">Congradulations!</h1>
   <p id="winpopupdesc" class="winpopupdesc"></p>
 </dialog>
 <dialog id="losepopup" class="losepopup">
-  <h1 id="losepopuphead" class="losepopuphead">You Lost.</h1><br>
+  <button class="closemodal" onclick='document.getElementById("losepopup").classList.remove("showpopup")'>X</button>
+  <h1 id="losepopuphead" class="losepopuphead">You Lost.</h1>
   <p id="losepopupdesc" class="losepopupdesc"></p>
 </dialog>
 <div id="centerdiv">
@@ -236,7 +258,7 @@
     var wordstring = word.toString();
     var buh = inputlist.join("");
     console.log(word);
-    if (buh.length == wordlength && guessesUsed < wordlength) {
+    if (buh.length == wordlength && guessesUsed < 6) {
       guesses.push(buh);
       for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
         document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
@@ -266,6 +288,9 @@
       if (buh == word) {
         winner(guessesUsed);
       } else {
+        if (guessesUsed > 5) {
+          loser();
+        }
         inputlist.length = 0;
       }
     } else {
@@ -290,6 +315,8 @@
     winpopup.open = true;
     winpopuphead.innerText = "Congradulations!";
     winpopupdesc.innerText = "You guessed the word " + word + " in " + attempts + " attempt(s).";
+    winpopup.classList.add("showpopup");
+
   }
 
   function loser() {
@@ -305,6 +332,7 @@
     losepopup.open = true;
     losepopuphead.innerText = "You Lost.";
     losepopupdesc.innerText = "The word was " + word + ".";
+    losepopup.classList.add("showpopup");
   }
 
 </script>

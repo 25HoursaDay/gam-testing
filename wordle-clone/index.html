@@ -143,6 +143,10 @@
     position: absolute;
   }
 
+  .space {
+    margin-left: 71px;
+  }
+
 </style>
 <dialog id="winpopup" class="winpopup">
   <button class="closemodal" onclick='document.getElementById("winpopup").classList.remove("showpopup")'>X</button>
@@ -207,7 +211,8 @@
   </div>
 </div>
 <script>
-  var word = "AAAAA";
+  var uncutWord = "AAA AA";
+  var word = uncutWord.toUpperCase().replace(" ", "");
   var wordlength = word.length;
   var guessesUsed = 0;
   const inputlist = [];
@@ -215,6 +220,7 @@
 
 
   for (var x = 0; x < wordlength; x++) {
+    var tempcutWord = uncutWord.toUpperCase();
     for (var i = 0; i < wordlength; i++) {
       console.log(document.getElementsByClassName("row")[x].children.length);
       if (document.getElementsByClassName("row")[x].children.length < word.length) {
@@ -222,6 +228,15 @@
         spanadjust.innerText = "?";
         spanadjust.classList.add("letter");
         document.getElementsByClassName("row")[x].append(spanadjust);
+        if (tempcutWord[i] == " ") {
+          var spaceLoc = tempcutWord.indexOf(" ");
+          spanadjust.classList.add("space");
+          var tempcutWord = tempcutWord.split('');
+          tempcutWord.splice(spaceLoc, 1, ".");
+          tempcutWord = tempcutWord.join('');
+          tempcutWord = tempcutWord.toString();
+          console.log(tempcutWord);
+        }
       }
     }
   }
@@ -230,7 +245,7 @@
   function newletter(type) {
     if (inputlist.length > (wordlength - 1)) {
       inputlist.pop();
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = "?";
       inputlist.push(type);
       document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
     } else {

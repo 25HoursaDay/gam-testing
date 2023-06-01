@@ -1,5 +1,18 @@
-{"words":[
-  { "word":"John", "POS": "noun" },
-  { "word":"Anna", "POS": "verb" },
-  { "word":"Peter", "POS":"adjective" }
-]}
+{
+  "wordList": [{
+      "word": "placeholder",
+      "POS": "noun",
+      "def": "definition"
+    },
+    {
+      "word": "placeholder",
+      "POS": "verb",
+      "def": "definition"
+    },
+    {
+      "word": "placeholder",
+      "POS": "adjective",
+      "def": "definition"
+    }
+  ]
+}

@@ -225,6 +225,7 @@
         spanadjust.innerText = "?";
         spanadjust.classList.add("letter");
         document.getElementsByClassName("row")[x].append(spanadjust);
+
         if (tempcutWord[i] == " ") {
           var spaceLoc = tempcutWord.indexOf(" ");
           spanadjust.classList.add("space");
@@ -233,7 +234,9 @@
           tempcutWord = tempcutWord.join('');
           tempcutWord = tempcutWord.toString();
         }
+
       }
+
     }
   }
 
@@ -247,8 +250,15 @@
     } else {
       inputlist.push(type);
       document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
-
+      if (inputlist.length > (wordlength - 2)) {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 2)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.add("lastletter");
+      } else {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+      }
     }
+
   }
 
 

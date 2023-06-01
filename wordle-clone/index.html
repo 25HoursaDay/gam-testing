@@ -205,9 +205,6 @@
       <button class="input">M</button>
       <button id="delete" class="delete">Delete</button>
     </div>
-    <div class="keyboardsplit">
-      <button id="spacebar" class="spacebar">▁▁▁▁▁▁</button>
-    </div>
   </div>
 </div>
 <script>
@@ -222,7 +219,7 @@
   for (var x = 0; x < wordlength; x++) {
     var tempcutWord = uncutWord.toUpperCase();
     for (var i = 0; i < wordlength; i++) {
-      console.log(document.getElementsByClassName("row")[x].children.length);
+      // console.log(document.getElementsByClassName("row")[x].children.length);
       if (document.getElementsByClassName("row")[x].children.length < word.length) {
         var spanadjust = document.createElement("span");
         spanadjust.innerText = "?";
@@ -235,7 +232,6 @@
           tempcutWord.splice(spaceLoc, 1, ".");
           tempcutWord = tempcutWord.join('');
           tempcutWord = tempcutWord.toString();
-          console.log(tempcutWord);
         }
       }
     }
@@ -264,15 +260,12 @@
   }
   document.getElementById("delete").onclick = function() {
     inputlist.pop();
-    document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?" // or (guessesUsed + 1)
-    ;
-    console.log(inputlist);
+    document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?";
   };
 
   document.getElementById("enter").onclick = function() {
     var wordstring = word.toString();
     var buh = inputlist.join("");
-    console.log(word);
     if (buh.length == wordlength && guessesUsed < 6) {
       guesses.push(buh);
       for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
@@ -294,7 +287,7 @@
           document.getElementsByClassName("letter")[i].classList.add("wrongspot");
           inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
           wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
-          console.log(wordstring);
+          // console.log(wordstring);
         } else {
           document.getElementsByClassName("letter")[i].classList.add("noletter");
           inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
@@ -316,12 +309,6 @@
       console.log("word is less than " + wordlength + " letters.");
     }
   };
-
-
-  document.getElementById("spacebar").onclick = function() {
-    newletter(" ");
-  };
-
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);

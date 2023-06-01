@@ -208,7 +208,7 @@
   </div>
 </div>
 <script>
-  var uncutWord = "AAA AA";
+  var uncutWord = "CHEESE".toUpperCase();
   var word = uncutWord.toUpperCase().replace(" ", "");
   var wordlength = word.length;
   var guessesUsed = 0;
@@ -239,6 +239,7 @@
 
     }
   }
+  document.getElementsByClassName("letter")[0].classList.add("lastletter");
 
 
   function newletter(type) {

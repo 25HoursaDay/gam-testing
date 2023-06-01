@@ -1,0 +1,5 @@
+{"words":[
+  { "word":"John", "POS": "noun" },
+  { "word":"Anna", "POS": "verb" },
+  { "word":"Peter", "POS":"adjective" }
+]}

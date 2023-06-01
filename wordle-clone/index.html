@@ -237,17 +237,15 @@
   var guesses = [];
 
 
-
-  for (var i = 0; i < wordlength; i++) {
-    console.log(document.getElementsByClassName("row")[i].children.length);
-    if (document.getElementsByClassName("row")[i].children.length < word.length) {
-      var spanadjust = document.createElement("span");
-      spanadjust.innerText = "?";
-      spanadjust.class = "letter";
-      document.getElementsByClassName("row")[i].append(spnadjust);
-    }
-    if (document.getElementsByClassName("row")[i].children.length > word.length) {
-      document.getElementsByClassName("row")[i].removeChild(document.getElementsByClassName("row")[i].lastElementChild);
+  for (var x = 0; x < wordlength; x++) {
+    for (var i = 0; i < wordlength; i++) {
+      console.log(document.getElementsByClassName("row")[x].children.length);
+      if (document.getElementsByClassName("row")[x].children.length < word.length) {
+        var spanadjust = document.createElement("span");
+        spanadjust.innerText = "?";
+        spanadjust.classList.add("letter");
+        document.getElementsByClassName("row")[x].append(spanadjust);
+      }
     }
   }
 

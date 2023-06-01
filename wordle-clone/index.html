@@ -60,7 +60,7 @@
   }
 
   .keyboardsplit {
-    margin-top: 2px;
+    margin-top: 3px;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -79,7 +79,8 @@
 
   .enter,
   .delete,
-  .input {
+  .input,
+  .spacebar {
     color: black;
     outline: none;
     border: none;
@@ -91,8 +92,17 @@
     box-sizing: border-box;
     padding: none;
     height: 65px;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+  }
+
+  .spacebar {
+    font-weight: normal;
+    width: 350px;
+  }
+
+  .lastletter {
+    background-color: cornsilk;
   }
 
   .noletter {
@@ -149,48 +159,12 @@
     Wordle Clone
   </h1>
   <div id="letterparent">
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
-    <div class="row">
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-      <span class="letter">?</span>
-    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
   </div>
   <div class="keyboard">
     <div class="keyboardsplit">
@@ -226,6 +200,9 @@
       <button class="input">N</button>
       <button class="input">M</button>
       <button id="delete" class="delete">Delete</button>
+    </div>
+    <div class="keyboardsplit">
+      <button id="spacebar" class="spacebar">▁▁▁▁▁▁</button>
     </div>
   </div>
 </div>
@@ -318,6 +295,21 @@
       console.log("word is less than " + wordlength + " letters.");
     }
   };
+
+
+  document.getElementById("spacebar").onclick = function() {
+    if (inputlist.length > (wordlength - 1)) {
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
+      inputlist.push("▁");
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
+    } else {
+      inputlist.push("▁");
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+
+    }
+  };
+
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);

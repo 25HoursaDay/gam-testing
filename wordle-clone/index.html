@@ -227,18 +227,24 @@
   }
 
 
+  function newletter(type) {
+    if (inputlist.length > (wordlength - 1)) {
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
+    } else {
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+
+    }
+  }
+
+
+
   function ygu(x) {
     document.getElementsByClassName("input")[x].onclick = function() {
-      if (inputlist.length > (wordlength - 1)) {
-        inputlist.pop();
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
-        inputlist.push(this.innerText);
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
-      } else {
-        inputlist.push(this.innerText);
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
-
-      }
+      newletter(this.innerText);
     };
   }
   document.getElementById("delete").onclick = function() {
@@ -298,16 +304,7 @@
 
 
   document.getElementById("spacebar").onclick = function() {
-    if (inputlist.length > (wordlength - 1)) {
-      inputlist.pop();
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (guessesUsed + 1);
-      inputlist.push("▁");
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
-    } else {
-      inputlist.push("▁");
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
-
-    }
+    newletter(" ");
   };
 
 

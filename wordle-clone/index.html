@@ -236,6 +236,21 @@
   const inputlist = [];
   var guesses = [];
 
+
+
+  for (var i = 0; i < wordlength; i++) {
+    console.log(document.getElementsByClassName("row")[i].children.length);
+    if (document.getElementsByClassName("row")[i].children.length < word.length) {
+      var spanadjust = document.getElementsByClassName("row")[i].createElement("span");
+      spanadjust.innerText = "?";
+      spanadjust.class = "letter";
+    }
+    if (document.getElementsByClassName("row")[i].children.length > word.length) {
+      document.getElementsByClassName("row")[i].removeChild(document.getElementsByClassName("row")[i].lastElementChild);
+    }
+  }
+
+
   function ygu(x) {
     document.getElementsByClassName("input")[x].onclick = function() {
       if (inputlist.length > (wordlength - 1)) {

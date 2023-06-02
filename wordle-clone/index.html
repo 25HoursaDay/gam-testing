@@ -257,7 +257,7 @@
     } else {
       inputlist.push(type);
       document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
-      if (inputlist.length > (wordlength - 2)) {
+      if (inputlist.length > (wordlength - 1)) {
         document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 2)].classList.remove("lastletter");
         document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.add("lastletter");
       } else {
@@ -278,6 +278,13 @@
   document.getElementById("delete").onclick = function() {
     inputlist.pop();
     document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?";
+    if (!inputlist.length > (wordlength - 1)) {
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+    } else {
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+    }
   };
 
   document.getElementById("enter").onclick = function() {

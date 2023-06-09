@@ -1,4 +1,5 @@
 var wholeDictionary;
+// var buh = "zimbabwe";
 // buh is a reference to buh in the enter function
 function loadXMLDoc() {
   var xhttp = new XMLHttpRequest();
@@ -19,4 +20,5 @@ function loadXMLDoc() {
   xhttp.open("GET", "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt", true);
   xhttp.send();
 }
+// put the function call in the enter function
 loadXMLDoc();

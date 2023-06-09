@@ -13,7 +13,7 @@ var word = "peepeepoopoo";
 
 var wholeDictionary = "";
 var dictLoad = "";
-var aword = "";
+var isaword = "";
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -33,20 +33,14 @@ function enterRequest() {
     if (wholeDictionary[i].toString().trim() == buh) {
       console.log(wholeDictionary[i].toString().trim());
       console.log(i);
-      aword = true;
+      isaword = true;
       break;
     } else {
-      if (word == buh) {
-        // word is a reference to the word variable
-        aword = true;
-        break;
-      } else {
-        aword = false;
-      }
+      isaword = false;
     }
   }
-  console.log("aword: " + aword);
-  if (aword = false) {
+  console.log("isaword: " + isaword);
+  if (isaword == false) {
     notaword();
     // add a "break" set to break the enter function
   }

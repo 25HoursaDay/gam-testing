@@ -1,11 +1,12 @@
 <style>
   html {
-    font-family: "impact", "noto sans", "Helvetica", Arial, Roboto, Verdana;
+    font-family: Arial, Roboto, Verdana, "Helvetica", "impact";
   }
 
   body {
     display: flex;
     justify-content: center;
+
   }
 
   #centerdiv {
@@ -56,6 +57,7 @@
     font-weight: bold;
     font-size: 35px;
     color: black;
+    background-color: white;
   }
 
   .keyboard {
@@ -135,7 +137,7 @@
   }
 
   .showpopup {
-    width: 70vw;
+    width: 50vw;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -156,7 +158,7 @@
 </style>
 <dialog id="winpopup" class="winpopup">
   <button class="closemodal" onclick='document.getElementById("winpopup").classList.remove("showpopup")'>X</button>
-  <h1 id="winpopuphead" class="winpopuphead">Congradulations!</h1>
+  <h1 id="winpopuphead" class="winpopuphead">Congrats!</h1>
   <p id="winpopupdesc" class="winpopupdesc"></p>
 </dialog>
 <dialog id="losepopup" class="losepopup">
@@ -166,8 +168,9 @@
 </dialog>
 <div id="centerdiv">
   <h1 id="title">
-    Wordle Clone
+    Wordle Clone (WIP)
   </h1>
+
   <div id="letterparent">
     <div class="row"></div>
     <div class="row"></div>
@@ -214,7 +217,7 @@
   </div>
 </div>
 <script>
-  var uncutWord = "bruh".toUpperCase();
+  var uncutWord = "boonch".toUpperCase();
   var word = uncutWord.replace(" ", "");
   var wordlength = word.length;
   var guessesUsed = 0;

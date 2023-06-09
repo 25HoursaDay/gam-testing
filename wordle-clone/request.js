@@ -1,4 +1,6 @@
-function notaword() {}
+function notaword() {
+  console.log("not a valid word");
+}
 var wholeDictionary = "";
 var inword = "";
 // var buh = "zimbabwe";

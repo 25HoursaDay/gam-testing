@@ -1,3 +1,4 @@
+function notaword() {}
 var wholeDictionary = "";
 var inword = "";
 // var buh = "zimbabwe";
@@ -21,6 +22,10 @@ function loadXMLDoc() {
         }
       }
       console.log("inword: " + inword);
+      if (inword = false) {
+        notaword();
+        // add a "break" set to break the enter function
+      }
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt", true);

@@ -26,8 +26,9 @@ function loadXMLDoc() {
             // word is a reference to the word variable
             inword = true;
             break;
+          } else {
+            inword = false;
           }
-          inword = false;
         }
       }
       console.log("inword: " + inword);

@@ -1,16 +1,16 @@
-var fe;
+var wholeDictionary;
 var wordwwd = "cum";
 
 function loadXMLDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      fe =
+      wholeDictionary =
         this.responseText.trim().split("\n");
 
-      for (var i = 0; i < fe.length; i++) {
-        if (fe[i].toString().trim() == wordwwd) {
-          console.log(fe[i].toString().trim());
+      for (var i = 0; i < wholeDictionary.length; i++) {
+        if (wholeDictionary[i].toString().trim() == wordwwd) {
+          console.log(wholeDictionary[i].toString().trim());
           console.log(i);
           break;
         }

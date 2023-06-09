@@ -3,6 +3,8 @@ var wholeDictionary = "";
 var inword = "";
 // var buh = "zimbabwe";
 // buh is a reference to the buh variable in the enter function
+// var word = "peepeepoopoo";
+// word is a reference to the word variable
 function loadXMLDoc() {
   var inword = "";
   var xhttp = new XMLHttpRequest();
@@ -18,6 +20,11 @@ function loadXMLDoc() {
           inword = true;
           break;
         } else {
+          if (word == buh) {
+            // word is a reference to the word variable
+            inword = true;
+            break;
+          }
           inword = false;
         }
       }

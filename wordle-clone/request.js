@@ -1,6 +1,5 @@
 var wholeDictionary;
-var wordwwd = "cum";
-
+// buh is a reference to buh in the enter function
 function loadXMLDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -9,7 +8,7 @@ function loadXMLDoc() {
         this.responseText.trim().split("\n");
 
       for (var i = 0; i < wholeDictionary.length; i++) {
-        if (wholeDictionary[i].toString().trim() == wordwwd) {
+        if (wholeDictionary[i].toString().trim() == buh) {
           console.log(wholeDictionary[i].toString().trim());
           console.log(i);
           break;

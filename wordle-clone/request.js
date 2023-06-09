@@ -1,7 +1,9 @@
-var wholeDictionary;
+var wholeDictionary = "";
+var inword = "";
 // var buh = "zimbabwe";
-// buh is a reference to buh in the enter function
+// buh is a reference to the buh variable in the enter function
 function loadXMLDoc() {
+  var inword = "";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -12,9 +14,13 @@ function loadXMLDoc() {
         if (wholeDictionary[i].toString().trim() == buh) {
           console.log(wholeDictionary[i].toString().trim());
           console.log(i);
+          inword = true;
           break;
+        } else {
+          inword = false;
         }
       }
+      console.log("inword: " + inword);
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt", true);

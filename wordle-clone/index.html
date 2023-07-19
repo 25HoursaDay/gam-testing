@@ -157,6 +157,7 @@
   }
 
 </style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <dialog id="winpopup" class="winpopup">
   <button class="closemodal" onclick='document.getElementById("winpopup").classList.remove("showpopup")'>X</button>
   <h1 id="winpopuphead" class="winpopuphead">Congrats!</h1>
@@ -295,13 +296,16 @@
     var buh = inputlist.join("");
     if (buh.length == wordlength && guessesUsed < 6) {
       // check for validity
-
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState === 4) {
-
-          if (xhttp.status === 200) {
-            console.log('successful');
+      $.ajax({
+        method: 'GET',
+        url: 'https://api.api-ninjas.com/v1/dictionary?word=' + buh,
+        headers: {
+          'X-Api-Key': '2bAFclZmBqfnwSU6HsKSAw==FqmFVr9Br71xjgZh'
+        },
+        contentType: 'application/json',
+        success: function(result) {
+          console.log(result);
+          if (result.valid) {
             guesses.push(buh);
             for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
               document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
@@ -342,19 +346,19 @@
               inputlist.length = 0;
             }
           } else {
-            console.log('Not on the word list.');
+            console.log("not a word");
           }
+        },
+        error: function ajaxError(jqXHR) {
+          console.error('Error: ', jqXHR.responseText);
         }
-      };
-      xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + buh + "", true);
-      xhttp.send();
-
+      });
       // end check
-
     } else {
       console.log("word is less than " + wordlength + " letters.");
     }
   };
+
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);

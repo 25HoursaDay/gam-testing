@@ -294,44 +294,63 @@
     var wordstring = word.toString();
     var buh = inputlist.join("");
     if (buh.length == wordlength && guessesUsed < 6) {
-      guesses.push(buh);
-      for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
-        document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
-        if (word.includes(buh[i - (guessesUsed * wordlength)])) {
-          if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
-            document.getElementsByClassName("letter")[i].classList.add("correct");
-            inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
-            wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
+      // check for validity
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4) {
+
+          if (xhttp.status === 200) {
+            console.log('successful');
+            guesses.push(buh);
+            for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+              document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
+              if (word.includes(buh[i - (guessesUsed * wordlength)])) {
+                if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
+                  document.getElementsByClassName("letter")[i].classList.add("correct");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
+                  wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
+                }
+              } else {
+                document.getElementsByClassName("letter")[i].classList.add("noletter");
+                inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
+                wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
+              }
+            }
+            for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+              if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
+                document.getElementsByClassName("letter")[i].classList.add("wrongspot");
+                inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
+                wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
+                // console.log(wordstring);
+              } else {
+                document.getElementsByClassName("letter")[i].classList.add("noletter");
+                inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
+              }
+            }
+
+            console.log("you guessed: " + guesses[guessesUsed++]);
+            console.log(guessesUsed + " guesses used");
+
+            if (buh == word) {
+              winner(guessesUsed);
+            } else {
+              if (guessesUsed > 5) {
+                loser();
+              }
+              // reset inputlist
+              inputlist.length = 0;
+            }
+          } else {
+            console.log('Not on the word list.');
           }
-        } else {
-          document.getElementsByClassName("letter")[i].classList.add("noletter");
-          inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
-          wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
         }
-      }
-      for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
-        if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
-          document.getElementsByClassName("letter")[i].classList.add("wrongspot");
-          inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
-          wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
-          // console.log(wordstring);
-        } else {
-          document.getElementsByClassName("letter")[i].classList.add("noletter");
-          inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
-        }
-      }
+      };
+      xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + buh + "", true);
+      xhttp.send();
 
-      console.log("you guessed: " + guesses[guessesUsed++]);
-      console.log(guessesUsed + " guesses used");
+      // end check
 
-      if (buh == word) {
-        winner(guessesUsed);
-      } else {
-        if (guessesUsed > 5) {
-          loser();
-        }
-        inputlist.length = 0;
-      }
     } else {
       console.log("word is less than " + wordlength + " letters.");
     }

@@ -1,7 +1,9 @@
 <div id="modeopts"></div>
 <p>calories:</p><button>number | arrow up/down or checkmark</button><br>
-/* expand each guess so there will be no limit on guesses, add timer too*/
+<!-- expand each guess so there will be no limit on guesses, add timer too -->
 <script>
+  /* make it so it can get and set from cookies */
+  const guesses = {};
   var defvals = {
     cals: 0,
     servingsize: 0,

@@ -1,10 +1,39 @@
+<style>
+  .guessrow {
+    height: auto;
+    padding: none;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .inputG {
+    height: 100%;
+    display: flex;
+  }
+
+</style>
+<h4>
+  How to play:
+</h4>
+<p>
+  Green = 100% on the dot | Yellow = 20% of the number above or below | Red = within 80% of the number above or below | Gray = more than 80% off
+</p>
+
+<p>You will get the name and serving size to begin.</p>
 <div id="modeopts"></div>
-<p>calories:</p><button>number | arrow up/down or checkmark</button><br>
+<div id="cals" class="guessrow">
+  <!-- base the increments (step) off of the daily value -->
+  <p>Calories:</p><input class="inputG" type="number" step=".1" placeholder="0">
+  <p class="emojiP">🙂</p>
+</div>
+<!-- add accuracy % at the end? -->
 <!-- expand each guess so there will be no limit on guesses, add timer too -->
 <script>
   /* make it so it can get and set from cookies */
   const guesses = {};
-  var defvals = {
+  const defVals = {
     cals: 0,
     servingsize: 0,
     totalfat: 0,
@@ -16,6 +45,17 @@
     totalcarbs: 0,
     fiber: 0,
     sugar: 0
+  };
+  for (var i in defVals) {
+    if (Object.prototype.hasOwnProperty.call(defVals, i)) {
+      console.log(defVals[i])
+
+    }
+  }
+
+  function fixVals(item, index) {
+    console.log(item);
+    console.log(index);
   }
 
 </script>

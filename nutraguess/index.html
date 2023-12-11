@@ -28,6 +28,21 @@
     background-color: lightgray;
   }
 
+  #content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: none;
+  }
+
+  #labelcolumn,
+  #guesscolumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: none;
+  }
+
 </style>
 <h4>
   How to play:
@@ -38,46 +53,62 @@
 
 <p>You will get the name and serving size to begin.</p>
 <div id="modeopts"></div>
-<div id="cals" class="guessrow">
-  <!-- base the increments (step) off of the daily value -->
-  <p>Calories: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Total Fat: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Saturated Fat: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Protein: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Sodium: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Potasium: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Cholesterol: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Total Carbs: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Fiber: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
-</div>
-<div class="guessrow">
-  <p>Sugar: </p><input class="inputG" type="number" step="1" placeholder="0">
-  <p class="emojiP">🙂</p>
+<div id="content">
+  <div id="labelcolumn">
+    <p class="labelc">Calories: </p>
+    <p class="labelc">Total Fat: </p>
+    <p class="labelc">Saturated Fat: </p>
+    <p class="labelc">Protein: </p>
+    <p class="labelc">Sodium: </p>
+    <p class="labelc">Potasium: </p>
+    <p class="labelc">Cholesterol: </p>
+    <p class="labelc">Total Carbs: </p>
+    <p class="labelc">Fiber: </p>
+    <p class="labelc">Sugar: </p>
+  </div>
+  <div id="guesscolumn">
+    <div id="cals" class="guessrow">
+      <!-- base the increments (step) off of the daily value -->
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+    <div class="guessrow">
+      <input class="inputG" type="number" step="1" placeholder="0">
+      <p class="emojiP">🙂</p>
+    </div>
+  </div>
 </div>
 <!-- add accuracy % at the end? -->
 <!-- expand each guess so there will be no limit on guesses, add timer too -->

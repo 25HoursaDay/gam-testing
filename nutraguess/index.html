@@ -51,20 +51,20 @@
   Green = 100% on the dot | Yellow = 20% of the number above or below | Red = within 80% of the number above or below | Gray = more than 80% off
 </p>
 
-<p>You will get the name and serving size to begin.</p>
+<p>You will get the name and serving size (in grams) to begin.</p>
 <div id="modeopts"></div>
 <div id="content">
   <div id="labelcolumn">
     <p class="labelc">Calories: </p>
-    <p class="labelc">Total Fat: </p>
-    <p class="labelc">Saturated Fat: </p>
-    <p class="labelc">Protein: </p>
-    <p class="labelc">Sodium: </p>
-    <p class="labelc">Potasium: </p>
-    <p class="labelc">Cholesterol: </p>
-    <p class="labelc">Total Carbs: </p>
-    <p class="labelc">Fiber: </p>
-    <p class="labelc">Sugar: </p>
+    <p class="labelc">Total Fat (g): </p>
+    <p class="labelc">Saturated Fat (g): </p>
+    <p class="labelc">Protein (g): </p>
+    <p class="labelc">Sodium (mg): </p>
+    <p class="labelc">Potasium (mg): </p>
+    <p class="labelc">Cholesterol (mg): </p>
+    <p class="labelc">Total Carbs (g): </p>
+    <p class="labelc">Fiber (g): </p>
+    <p class="labelc">Sugar (g): </p>
   </div>
   <div id="guesscolumn">
     <div id="cals" class="guessrow">
@@ -112,6 +112,9 @@
 </div>
 <!-- add accuracy % at the end? -->
 <!-- expand each guess so there will be no limit on guesses, add timer too -->
+<div id="submitarea">
+  <button onclick="">Guess</button>
+</div>
 <script>
   /* make it so it can get and set from cookies */
   const guesses = {};

@@ -27,22 +27,17 @@
 
 </div>
 <script>
-  // might need to retcon anything after the following code
   const patternGiven = [
-    [1, 2, 3],
-    [2, 1, 3]
+    [1, 2, 3, ],
+    [6, 4, 9, ],
+    [5, 10, 7]
   ];
   const colorOpts = [
-    "red", "coral", "yellow", "green", "blue", "purple", "pink"
+    "deeppink", "coral", "yellow", "aquamarine", "cyan", "magenta", "pink", "navajowhite", "mistyrose", "dodgerblue"
   ];
-  // retcon:
-
   var pgpSize = 30; // in px, includes margin and ect.
   // var difficulty = 1;
   // 1 = easy, 2 = medium, 3 = hard
-  var wrap = patternGiven[0].length;
-  // console.log(wrap);
-  var charsGiven = patternGiven[0].length * patternGiven.length;
 
   for (var x = 0; x < patternGiven.length; x++) {
     for (var i = 0; i < patternGiven[x].length; i++) {
@@ -51,9 +46,8 @@
       patternGivenPart.id = "pgp" + i + "";
       patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
       document.getElementById("patternGiven").append(patternGivenPart);
-      // console.log(patternGivenPart.style.width);
     }
   }
-  document.getElementById("patternGiven").style.width = (pgpSize * wrap) + "px";
+  document.getElementById("patternGiven").style.width = (pgpSize * patternGiven[0].length) + "px";
 
 </script>

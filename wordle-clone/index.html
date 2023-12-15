@@ -193,7 +193,7 @@
   </div>
 </div>
 <script>
-  var uncutWord = "boonch".toUpperCase();
+  var uncutWord = "horse".toUpperCase();
   var word = uncutWord.replace(" ", "");
   var wordlength = word.length;
   var guessesUsed = 0;
@@ -250,9 +250,13 @@
 
 
   function ygu(x) {
-    document.getElementsByClassName("input")[x].onclick = function() {
-      newletter(this.innerText);
-    };
+    document.getElementsByClassName("input")[x].addEventListener("click", function() {
+      letterClick(this.innerText);
+    });
+  }
+
+  function letterClick(foo) {
+    newletter(foo);
   }
 
   function deleteClick() {
@@ -342,7 +346,9 @@
   function winner(attempts) {
     console.log("You guessed the word " + word + " in " + attempts + " attempts");
     for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
-      document.getElementsByClassName("input")[i].onclick = "";
+      document.getElementsByClassName("input")[i].removeEventListener("click", function() {
+        letterClick(this.innerText);
+      });
     }
     document.getElementById("delete").onclick = "";
     document.getElementById("enter").onclick = "";
@@ -359,7 +365,9 @@
   function loser() {
     console.log("The word was " + word + ".");
     for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
-      document.getElementsByClassName("input")[i].onclick = "";
+      document.getElementsByClassName("input")[i].removeEventListener("click", function() {
+        letterClick(this.innerText);
+      });
     }
     document.getElementById("delete").onclick = "";
     document.getElementById("enter").onclick = "";
@@ -421,8 +429,10 @@
     console.log(foo);
     if (foo == "enter") {
       enterClick();
-    } else if (foo == "backspace") {} else {
-
+    } else if (foo == "backspace") {
+      deleteClick();
+    } else {
+      letterClick(foo.toUpperCase());
     }
   }
 

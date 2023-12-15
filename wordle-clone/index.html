@@ -193,6 +193,7 @@
   </div>
 </div>
 <script>
+  var abletoplay = false;
   var uncutWord = "horse".toUpperCase();
   var word = uncutWord.replace(" ", "");
   var wordlength = word.length;
@@ -200,11 +201,9 @@
   const inputlist = [];
   var guesses = [];
 
-
   for (var x = 0; x < 6; x++) {
     var tempcutWord = uncutWord.toUpperCase();
     for (var i = 0; i < wordlength; i++) {
-      // console.log(document.getElementsByClassName("row")[x].children.length);
       if (document.getElementsByClassName("row")[x].children.length < word.length) {
         var spanadjust = document.createElement("span");
         spanadjust.innerText = "?";
@@ -219,174 +218,14 @@
           tempcutWord = tempcutWord.join('');
           tempcutWord = tempcutWord.toString();
         }
-
       }
-
     }
   }
   document.getElementsByClassName("letter")[0].classList.add("lastletter");
-
-
-  function newletter(type) {
-    if (inputlist.length > (wordlength - 1)) {
-      inputlist.pop();
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = "?";
-      inputlist.push(type);
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
-    } else {
-      inputlist.push(type);
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
-      if (inputlist.length > (wordlength - 1)) {
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 2)].classList.remove("lastletter");
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.add("lastletter");
-      } else {
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.remove("lastletter");
-        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
-      }
-    }
-
-  }
-
-
-
-  function ygu(x) {
-    document.getElementsByClassName("input")[x].addEventListener("click", function() {
-      letterClick(this.innerText);
-    });
-  }
-
-  function letterClick(foo) {
-    newletter(foo);
-  }
-
-  function deleteClick() {
-    inputlist.pop();
-    document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?";
-    if (!inputlist.length > (wordlength - 1)) {
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
-    } else {
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
-      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
-    }
-  };
-
-  function enterClick() {
-    var wordstring = word.toString();
-    var buh = inputlist.join("");
-    if (buh.length == wordlength && guessesUsed < 6) {
-      // check for validity
-      const data = null;
-      const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          var response = JSON.parse(xhr.responseText);
-          if (xhr.status === 200) {
-            // IF SUCCESS
-            console.log(this.responseText);
-            console.log('successful');
-            guesses.push(buh);
-            for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
-              document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
-              if (word.includes(buh[i - (guessesUsed * wordlength)])) {
-                if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
-                  document.getElementsByClassName("letter")[i].classList.add("correct");
-                  inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
-                  wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
-                }
-              } else {
-                document.getElementsByClassName("letter")[i].classList.add("noletter");
-                inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
-                wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
-              }
-            }
-            for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
-              if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
-                document.getElementsByClassName("letter")[i].classList.add("wrongspot");
-                inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
-                wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
-                // console.log(wordstring);
-              } else {
-                document.getElementsByClassName("letter")[i].classList.add("noletter");
-                inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
-              }
-            }
-
-            console.log("you guessed: " + guesses[guessesUsed++]);
-            console.log(guessesUsed + " guesses used");
-
-            if (buh == word) {
-              winner(guessesUsed);
-            } else {
-              if (guessesUsed > 5) {
-                loser();
-              }
-              // reset inputlist
-              inputlist.length = 0;
-            }
-          } else {
-            console.log("Fail, not a word")
-          }
-        }
-      }
-      xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/' + buh);
-      xhr.send(data);
-
-      // end check
-    } else {
-      console.log("word is less than " + wordlength + " letters.");
-    }
-  };
-
+  abletoplay = true;
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
     ygu(i);
-  }
-
-  function winner(attempts) {
-    console.log("You guessed the word " + word + " in " + attempts + " attempts");
-    for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
-      document.getElementsByClassName("input")[i].removeEventListener("click", function() {
-        letterClick(this.innerText);
-      });
-    }
-    document.getElementById("delete").onclick = "";
-    document.getElementById("enter").onclick = "";
-    let winpopup = document.getElementById("winpopup");
-    let winpopuphead = document.getElementById("winpopuphead");
-    let winpopupdesc = document.getElementById("winpopupdesc");
-    winpopup.open = true;
-    winpopuphead.innerText = "Congratulations!";
-    winpopupdesc.innerText = "You guessed the word " + word + " in " + attempts + " attempt(s).";
-    winpopup.classList.add("showpopup");
-
-  }
-
-  function loser() {
-    console.log("The word was " + word + ".");
-    for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
-      document.getElementsByClassName("input")[i].removeEventListener("click", function() {
-        letterClick(this.innerText);
-      });
-    }
-    document.getElementById("delete").onclick = "";
-    document.getElementById("enter").onclick = "";
-    let losepopup = document.getElementById("losepopup");
-    let losepopuphead = document.getElementById("losepopuphead");
-    let losepopupdesc = document.getElementById("losepopupdesc");
-    losepopup.open = true;
-    losepopuphead.innerText = "You Lost.";
-    losepopupdesc.innerText = "The word was " + word + ".";
-    losepopup.classList.add("showpopup");
-  }
-
-
-  function inputchange(term, changeto) {
-    for (const x of document.querySelectorAll(".input")) {
-      if (x.textContent.includes(term)) {
-        x.classList.add(changeto);
-      }
-    }
   }
 
   var keyChecks = [
@@ -419,11 +258,161 @@
     "enter",
     "backspace"
   ];
+
   window.addEventListener("keydown", (e) => {
     if (keyChecks.toString().includes(e.key.toLowerCase())) {
       doodoo(e.key.toLowerCase());
     }
   });
+
+  function newletter(type) {
+    if (inputlist.length > (wordlength - 1)) {
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = "?";
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
+    } else {
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+      if (inputlist.length > (wordlength - 1)) {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 2)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.add("lastletter");
+      } else {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+      }
+    }
+  }
+
+  function ygu(x) {
+    document.getElementsByClassName("input")[x].addEventListener("click", function() {
+      letterClick(this.innerText);
+    });
+  }
+
+  function letterClick(foo) {
+    if (abletoplay == true) {
+      newletter(foo);
+    }
+  }
+
+  function deleteClick() {
+    if (abletoplay == true) {
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = "?";
+      if (!inputlist.length > (wordlength - 1)) {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+      } else {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
+      }
+    }
+  };
+
+  function enterClick() {
+    if (abletoplay == true) {
+      var wordstring = word.toString();
+      var buh = inputlist.join("");
+      if (buh.length == wordlength && guessesUsed < 6) {
+        // check for validity
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.status === 200) {
+              // IF SUCCESS
+              console.log(this.responseText);
+              console.log('successful');
+              guesses.push(buh);
+              for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+                document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
+                if (word.includes(buh[i - (guessesUsed * wordlength)])) {
+                  if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
+                    document.getElementsByClassName("letter")[i].classList.add("correct");
+                    inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
+                    wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
+                  }
+                } else {
+                  document.getElementsByClassName("letter")[i].classList.add("noletter");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
+                  wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
+                }
+              }
+              for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+                if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
+                  document.getElementsByClassName("letter")[i].classList.add("wrongspot");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
+                  wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
+                  // console.log(wordstring);
+                } else {
+                  document.getElementsByClassName("letter")[i].classList.add("noletter");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
+                }
+              }
+
+              console.log("you guessed: " + guesses[guessesUsed++]);
+              console.log(guessesUsed + " guesses used");
+
+              if (buh == word) {
+                winner(guessesUsed);
+              } else {
+                if (guessesUsed > 5) {
+                  loser();
+                }
+                // reset inputlist
+                inputlist.length = 0;
+              }
+            } else {
+              console.log("Fail, not a word")
+            }
+          }
+        }
+        xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/' + buh);
+        xhr.send(data);
+        // end check
+      } else {
+        console.log("word is less than " + wordlength + " letters.");
+      }
+    }
+  };
+
+  function winner(attempts) {
+    abletoplay = false;
+    console.log("You guessed the word " + word + " in " + attempts + " attempts");
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    let winpopup = document.getElementById("winpopup");
+    let winpopuphead = document.getElementById("winpopuphead");
+    let winpopupdesc = document.getElementById("winpopupdesc");
+    winpopup.open = true;
+    winpopuphead.innerText = "Congratulations!";
+    winpopupdesc.innerText = "You guessed the word " + word + " in " + attempts + " attempt(s).";
+    winpopup.classList.add("showpopup");
+  }
+
+  function loser() {
+    abletoplay = false;
+    console.log("The word was " + word + ".");
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    let losepopup = document.getElementById("losepopup");
+    let losepopuphead = document.getElementById("losepopuphead");
+    let losepopupdesc = document.getElementById("losepopupdesc");
+    losepopup.open = true;
+    losepopuphead.innerText = "You Lost.";
+    losepopupdesc.innerText = "The word was " + word + ".";
+    losepopup.classList.add("showpopup");
+  }
+
+  function inputchange(term, changeto) {
+    for (const x of document.querySelectorAll(".input")) {
+      if (x.textContent.includes(term)) {
+        x.classList.add(changeto);
+      }
+    }
+  }
 
   function doodoo(foo) {
     console.log(foo);

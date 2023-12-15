@@ -206,7 +206,7 @@
     for (var i = 0; i < wordlength; i++) {
       if (document.getElementsByClassName("row")[x].children.length < word.length) {
         var spanadjust = document.createElement("span");
-        spanadjust.innerText = "?";
+        spanadjust.innerText = "_";
         spanadjust.classList.add("letter");
         document.getElementsByClassName("row")[x].append(spanadjust);
 

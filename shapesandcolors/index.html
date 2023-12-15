@@ -1,17 +1,36 @@
 <style>
-  body {
+  #content {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
   }
 
-  #patternGiven {
-    width: 100%;
-    height: 100%;
+  #exampleColors {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     border: 1px gray solid;
+  }
+
+  .exampleColorsPart {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    margin: 5px;
+    box-sizing: border-box;
+  }
+
+  #patternGiven {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px gray solid;
+    margin-top: 50px;
   }
 
   .patternGivenPart {
@@ -23,19 +42,40 @@
   }
 
 </style>
-<div id="patternGiven">
-
+<div id="content">
+  <div id="exampleColors"></div>
+  <div id="options">
+    <input type="checkbox" name="letters">
+    <input type="checkbox" name="numbers">
+    <input type="checkbox" name="shapes">
+    <input type="checkbox" name="colors">
+  </div>
+  <div id="patternGiven">
+  </div>
 </div>
 <script>
+  const colorOpts = [
+    "deeppink", "coral", "navajowhite", "yellow", "aquamarine", "cyan", "dodgerblue", "magenta", "pink", "mistyrose"
+  ];
+  var ecpSize = 30; // in px, includes margin and ect.
+
+  for (var x = 0; x < colorOpts.length; x++) {
+    var exampleColorsPart = document.createElement("div");
+    exampleColorsPart.classList.add("exampleColorsPart");
+    exampleColorsPart.style.backgroundColor = colorOpts[x];
+    document.getElementById("exampleColors").append(exampleColorsPart);
+  }
+  document.getElementById("exampleColors").style.width = (ecpSize * colorOpts.length);
+  document.getElementById("exampleColors").style.height = (ecpSize + "px");
+
+  var pgpSize = 30; // in px, includes margin and ect.
   const patternGiven = [
     [1, 2, 3, ],
     [6, 4, 9, ],
     [5, 10, 7]
   ];
-  const colorOpts = [
-    "deeppink", "coral", "yellow", "aquamarine", "cyan", "magenta", "pink", "navajowhite", "mistyrose", "dodgerblue"
-  ];
-  var pgpSize = 30; // in px, includes margin and ect.
+
+
   // var difficulty = 1;
   // 1 = easy, 2 = medium, 3 = hard
 
@@ -49,5 +89,6 @@
     }
   }
   document.getElementById("patternGiven").style.width = (pgpSize * patternGiven[0].length) + "px";
+  document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
 </script>

@@ -75,7 +75,6 @@
   const colorOpts = [
     "deeppink", "coral", "navajowhite", "yellow", "aquamarine", "cyan", "dodgerblue", "magenta", "pink", "mistyrose"
   ];
-  const letterCols = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
   var ecpSize = 30; // in px, includes margin and ect.
 
   for (var x = 0; x < colorOpts.length; x++) {
@@ -127,6 +126,13 @@
       console.log("true");
     } else {
       console.log("false");
+      //document.getElementById("pgp" + i + "").style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
+      for (var x = 0; x < patternGiven.length; x++) {
+        for (var i = 0; i < patternGiven[x].length; i++) {
+          document.getElementById("pgp" + i + "").style.backgroundColor = "gray";
+        }
+      }
+      //
     }
   }
 

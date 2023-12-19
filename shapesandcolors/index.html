@@ -59,6 +59,11 @@
     box-sizing: border-box;
   }
 
+  .gray {
+    background-color: black;
+    background-color: gray;
+  }
+
 </style>
 <div id="content">
   <div id="exampleColors"></div>
@@ -79,7 +84,7 @@
 
   for (var x = 0; x < colorOpts.length; x++) {
     var exampleColorsPart = document.createElement("span");
-    exampleColorsPart.classList.add("exampleColorsPart");
+    exampleColorsPart.className = "exampleColorsPart";
     exampleColorsPart.style.backgroundColor = colorOpts[x];
     document.getElementById("exampleColors").append(exampleColorsPart);
   }
@@ -100,8 +105,8 @@
   for (var x = 0; x < patternGiven.length; x++) {
     for (var i = 0; i < patternGiven[x].length; i++) {
       var patternGivenPart = document.createElement("span");
-      patternGivenPart.classList.add("patternGivenPart");
-      patternGivenPart.id = "pgp" + "r" + x + "c" + i + "";
+      patternGivenPart.className = "patternGivenPart";
+      patternGivenPart.id = ("r" + x + "c" + i + "");
       patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
       document.getElementById("patternGiven").append(patternGivenPart);
     }
@@ -110,7 +115,15 @@
   document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
   function lettersToggle() {
-
+    for (var x = 0; x < patternGiven.length; x++) {
+      for (var i = 0; i < patternGiven[x].length; i++) {
+        if (document.getElementsByName("letters")[0].checked) {
+          document.getElementById("r" + x + "c" + i + "").innerText = patternGiven[x][i];
+        } else {
+          document.getElementById("r" + x + "c" + i + "").innerText = "";
+        }
+      }
+    }
   }
 
   function numbersToggle() {
@@ -122,23 +135,13 @@
   }
 
   function colorsToggle() {
-    if (document.getElementsByName("colors")[0].checked) {
-      console.log("true");
-
-      for (var x = 0; x < patternGiven.length; x++) {
-        for (var i = 0; i < patternGiven[x].length; i++) {
-          document.getElementById("pgp" + "r" + x + "c" + i + "").style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
-        }
+    var x = document.getElementsByClassName("patternGivenPart");
+    for (var i = 0; i < x.length; i++) {
+      if (document.getElementsByName("colors")[0].checked) {
+        x[i].style.backgroundColor = colorOpts[patternGiven.toString().split(",")[i] - 1];
+      } else {
+        x[i].style.backgroundColor = null;
       }
-    } else {
-      console.log("false");
-      //document.getElementById("pgp" + i + "").style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
-      for (var x = 0; x < patternGiven.length; x++) {
-        for (var i = 0; i < patternGiven[x].length; i++) {
-          document.getElementById("pgp" + "r" + x + "c" + i + "").style.backgroundColor = "gray";
-        }
-      }
-      //
     }
   }
 

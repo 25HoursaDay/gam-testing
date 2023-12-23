@@ -117,7 +117,7 @@
       patternGivenPart.className = "patternGivenPart";
       patternGivenPart.id = ("r" + x + "c" + i + "");
       patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 0];
-      patternGivenPart.innerText = patternGiven[x][i];
+      // patternGivenPart.innerText = patternGiven[x][i];
       var tempVar1 = patternGiven[x][i].toString().split("").length;
       patternGivenPart.style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
       //
@@ -140,14 +140,9 @@
       for (var i = 0; i < patternGiven[x].length; i++) {
         var y = document.getElementById("r" + x + "c" + i + "");
         if (document.getElementsByName("numbers")[0].checked) {
-          y.style.color = "white";
+          y.innerText = patternGiven[x][i];
         } else {
-          // console.log(y.style.backgroundColor);
-          if (y.style.backgroundColor == "") {
-            y.style.color = "gray";
-          } else {
-            y.style.color = y.style.backgroundColor;
-          }
+          y.innerText = "";
         }
       }
     }

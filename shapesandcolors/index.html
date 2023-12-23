@@ -21,6 +21,7 @@
     background-color: gray;
     margin: 5px;
     box-sizing: border-box;
+    text-align: center;
   }
 
   #options {
@@ -54,9 +55,16 @@
   .patternGivenPart {
     width: 20px;
     height: 20px;
-    background-color: gray;
     margin: 5px;
+    background-color: gray;
     box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: arial;
   }
 
   .gray {
@@ -80,7 +88,8 @@
   const colorOpts = [
     "deeppink", "coral", "navajowhite", "yellow", "aquamarine", "cyan", "dodgerblue", "magenta", "pink", "mistyrose"
   ];
-  var ecpSize = 30; // in px, includes margin and ect.
+  var ecpSize = 30; // in px, includes margin and ect. so 30 is 20px + 5px * 2 for margin
+  var pgpTrueSize = 20; // in px, does not include margin ect.
 
   for (var x = 0; x < colorOpts.length; x++) {
     var exampleColorsPart = document.createElement("span");
@@ -93,9 +102,9 @@
 
   var pgpSize = 30; // in px, includes margin and ect.
   const patternGiven = [
-    [1, 2, 3, ],
-    [6, 4, 9, ],
-    [5, 10, 7]
+    [0, 1, 22],
+    [333, 4444, 5555],
+    [66, 7, 8]
   ];
 
 
@@ -107,7 +116,15 @@
       var patternGivenPart = document.createElement("span");
       patternGivenPart.className = "patternGivenPart";
       patternGivenPart.id = ("r" + x + "c" + i + "");
-      patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
+      patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 0];
+      patternGivenPart.innerText = patternGiven[x][i];
+      var tempVar1 = patternGiven[x][i].toString().split("").length;
+      patternGivenPart.style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
+      //
+      console.log(
+        (pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2
+      );
+      //
       document.getElementById("patternGiven").append(patternGivenPart);
     }
   }
@@ -115,19 +132,25 @@
   document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
   function lettersToggle() {
-    for (var x = 0; x < patternGiven.length; x++) {
-      for (var i = 0; i < patternGiven[x].length; i++) {
-        if (document.getElementsByName("letters")[0].checked) {
-          document.getElementById("r" + x + "c" + i + "").innerText = patternGiven[x][i];
-        } else {
-          document.getElementById("r" + x + "c" + i + "").innerText = "";
-        }
-      }
-    }
+
   }
 
   function numbersToggle() {
-
+    for (var x = 0; x < patternGiven.length; x++) {
+      for (var i = 0; i < patternGiven[x].length; i++) {
+        var y = document.getElementById("r" + x + "c" + i + "");
+        if (document.getElementsByName("numbers")[0].checked) {
+          y.style.color = "white";
+        } else {
+          // console.log(y.style.backgroundColor);
+          if (y.style.backgroundColor == "") {
+            y.style.color = "gray";
+          } else {
+            y.style.color = y.style.backgroundColor;
+          }
+        }
+      }
+    }
   }
 
   function shapesToggle() {

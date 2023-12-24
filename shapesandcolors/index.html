@@ -121,6 +121,7 @@
       // patternGivenPart.innerText = patternGiven[x][i];
       var tempVar1 = patternGiven[x][i].toString().split("").length;
       patternGivenPart.style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
+      patternGivenPart.setAttribute("numval", patternGiven[x][i]);
       //
       console.log(
         (pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2
@@ -133,76 +134,19 @@
   document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
   function lettersToggle() {
-    const abcSoup = [
-      "Z",
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y"
-    ];
-    const abcSoup2 = [
-      "",
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z"
-    ];
+    var x = document.getElementsByClassName("patternGivenPart");
+    for (var i = 0; i < x.length; i++) {
 
-    nTabc(26);
+    }
   }
 
   function numbersToggle() {
-    for (var x = 0; x < patternGiven.length; x++) {
-      for (var i = 0; i < patternGiven[x].length; i++) {
-        var y = document.getElementById("r" + x + "c" + i + "");
-        if (document.getElementsByName("numbers")[0].checked) {
-          y.innerText = patternGiven[x][i];
-        } else {
-          y.innerText = "";
-        }
+    var x = document.getElementsByClassName("patternGivenPart");
+    for (var i = 0; i < x.length; i++) {
+      if (document.getElementsByName("numbers")[0].checked) {
+        x[i].innerText = x[i].getAttribute("numval");
+      } else {
+        x[i].innerText = "";
       }
     }
   }
@@ -221,12 +165,7 @@
       }
     }
   }
-
-  function nTabc(abcN) {
-    // to start with 1 being A, 26 being Z, and 27 being AA:
-    console.log(abcSoup2[Math.floor((abcN - 1) / 26)] + abcSoup[abcN % 26]);
-    // to start with 1 being AA, 26 being AZ, and 27 being BA:
-    console.log(abcSoup[Math.floor((abcN - 0) / 26)] + abcSoup[abcN % 26]);
-  }
+  /* IMPORTANT 
+  Eventually make 1 function for all onChange() events from the options */
 
 </script>

@@ -104,7 +104,8 @@
   const patternGiven = [
     [0, 1, 22],
     [333, 4444, 5555],
-    [66, 7, 8]
+    [66, 7, 8],
+    [3, 55, 44]
   ];
 
 
@@ -132,7 +133,65 @@
   document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
   function lettersToggle() {
+    const abcSoup = [
+      "Z",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y"
+    ];
+    const abcSoup2 = [
+      "",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ];
 
+    nTabc(26);
   }
 
   function numbersToggle() {
@@ -161,6 +220,13 @@
         x[i].style.backgroundColor = null;
       }
     }
+  }
+
+  function nTabc(abcN) {
+    // to start with 1 being A, 26 being Z, and 27 being AA:
+    console.log(abcSoup2[Math.floor((abcN - 1) / 26)] + abcSoup[abcN % 26]);
+    // to start with 1 being AA, 26 being AZ, and 27 being BA:
+    console.log(abcSoup[Math.floor((abcN - 0) / 26)] + abcSoup[abcN % 26]);
   }
 
 </script>

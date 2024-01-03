@@ -85,6 +85,36 @@
   </div>
 </div>
 <script>
+  const abcSoup = [
+    "",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ];
+
   const colorOpts = [
     "deeppink", "coral", "navajowhite", "yellow", "aquamarine", "cyan", "dodgerblue", "magenta", "pink", "mistyrose"
   ];
@@ -102,9 +132,9 @@
 
   var pgpSize = 30; // in px, includes margin and ect.
   const patternGiven = [
-    [0, 1, 22],
-    [333, 4444, 5555],
-    [66, 7, 8],
+    [2, 1, 22],
+    [333, 27, 5555],
+    [66, 7, 26],
     [3, 55, 44]
   ];
 
@@ -117,30 +147,66 @@
       var patternGivenPart = document.createElement("span");
       patternGivenPart.className = "patternGivenPart";
       patternGivenPart.id = ("r" + x + "c" + i + "");
-      patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 0];
+      patternGivenPart.style.backgroundColor = colorOpts[patternGiven[x][i] - 1];
       // patternGivenPart.innerText = patternGiven[x][i];
-      var tempVar1 = patternGiven[x][i].toString().split("").length;
-      patternGivenPart.style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
+      //   var tempVar1 = patternGiven[x][i].toString().split("").length;
+      //   patternGivenPart.style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
+
       patternGivenPart.setAttribute("numval", patternGiven[x][i]);
-      //
-      console.log(
-        (pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2
-      );
-      //
+
       document.getElementById("patternGiven").append(patternGivenPart);
     }
   }
   document.getElementById("patternGiven").style.width = (pgpSize * patternGiven[0].length) + "px";
   document.getElementById("patternGiven").style.height = (pgpSize * patternGiven.length) + "px";
 
+  function adjustFont(funcVar) {
+    var x = document.getElementsByClassName("patternGivenPart");
+    for (var i = 0; i < x.length; i++) {
+      if (funcVar == "letters") {
+        var tempVar1 = procArray.length;
+      } else {
+        var tempVar1 = x[i].getAttribute("numval").toString().split("").length;
+      }
+      x[i].style.fontSize = "" + ((pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2) + "px";
+      /*
+            console.log(
+              (pgpTrueSize / (tempVar1)) * (1 + (.5 * (tempVar1 / 2))) - 2
+            );
+      */
+    }
+  }
+
   function lettersToggle() {
     var x = document.getElementsByClassName("patternGivenPart");
     for (var i = 0; i < x.length; i++) {
+
+      var procArray = [x[i].getAttribute("numval") * 1];
+      for (var uP = 0; uP < procArray.length; uP++) {
+        const qwer = [Math.floor(procArray[procArray.length - uP - 1] / 26), procArray[procArray.length - uP - 1] % 26];
+        if (qwer[qwer.length - uP - 1] == 0) {
+          qwer[qwer.length - uP - 1] = 26;
+          qwer[qwer.length - uP - 2]--;
+        }
+        console.log(qwer);
+        //console.log(procArray);
+
+
+        x[i].setAttribute("letval", "");
+
+        if (document.getElementsByName("letters")[0].checked) {
+          x[i].innerText = "";
+        } else {
+          x[i].innerText = "";
+        }
+
+      }
 
     }
   }
 
   function numbersToggle() {
+    adjustFont("numbers");
     var x = document.getElementsByClassName("patternGivenPart");
     for (var i = 0; i < x.length; i++) {
       if (document.getElementsByName("numbers")[0].checked) {

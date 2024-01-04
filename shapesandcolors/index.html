@@ -183,15 +183,30 @@
 
       var procArray = [x[i].getAttribute("numval") * 1];
       for (var uP = 0; uP < procArray.length; uP++) {
-        const qwer = [Math.floor(procArray[procArray.length - uP - 1] / 26), procArray[procArray.length - uP - 1] % 26];
+        //change to push
+        const qwer = [];
+        qwer.push(Math.floor(procArray[procArray.length - uP - 1] / 26));
+        qwer.push(procArray[procArray.length - uP - 1] % 26);
+
+        var qwert = qwer[0];
+        while (qwert > 26) {
+          qwer[0] = qwert % 26;
+          qwer.unshift(Math.floor(qwert / 26));
+          var qwert = qwer[0];
+        }
+
         if (qwer[qwer.length - uP - 1] == 0) {
           qwer[qwer.length - uP - 1] = 26;
           qwer[qwer.length - uP - 2]--;
         }
+
         console.log(qwer);
+
+        for (let fart in qwer) {
+          console.log(abcSoup[qwer[fart]]);
+        }
+
         //console.log(procArray);
-
-
         x[i].setAttribute("letval", "");
 
         if (document.getElementsByName("letters")[0].checked) {

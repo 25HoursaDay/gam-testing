@@ -49,7 +49,7 @@
     flex-wrap: wrap;
     justify-content: center;
     border: 1px gray solid;
-    margin-top: 50px;
+    margin-top: 25px;
   }
 
   .patternGivenPart {
@@ -74,15 +74,23 @@
 
 </style>
 <div id="content">
+  <h1>
+    25HoursaDay: Patterns
+  </h1>
+  <div id="menus">
+
+  </div>
   <div id="exampleColors"></div>
   <div id="options">
     <label class="optIn" for="letters">Letters<input onchange="lettersToggle()" type="checkbox" name="letters"></label>
     <label class="optIn" for="numbers">Numbers<input onchange="numbersToggle()" type="checkbox" name="numbers"></label>
-    <label class="optIn" for="shapes">Shapes<input onchange="shapesToggle()" type="checkbox" name="shapes" disabled></label>
     <label class="optIn" for="colors">Colors<input onchange="colorsToggle()" type="checkbox" name="colors" checked="true"></label>
   </div>
   <div id="patternGiven">
   </div>
+  <a id="cap" href="/create.html">
+    Create your own pattern
+  </a>
 </div>
 <script>
   const abcSoup = [
@@ -239,10 +247,6 @@
         x[i].innerText = "";
       }
     }
-  }
-
-  function shapesToggle() {
-
   }
 
   function colorsToggle() {

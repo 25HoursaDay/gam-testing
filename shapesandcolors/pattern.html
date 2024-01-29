@@ -8,6 +8,33 @@
     width: 100%;
   }
 
+  #left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+  }
+
+  #middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+  }
+
+  #right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+  }
+
   #exampleColors {
     display: flex;
     flex-direction: row;
@@ -77,20 +104,29 @@
   <h1>
     25HoursaDay: Patterns
   </h1>
-  <div id="menus">
+  <div id="left">
 
   </div>
-  <div id="exampleColors"></div>
-  <div id="options">
-    <label class="optIn" for="letters">Letters<input onchange="lettersToggle()" type="checkbox" name="letters"></label>
-    <label class="optIn" for="numbers">Numbers<input onchange="numbersToggle()" type="checkbox" name="numbers"></label>
-    <label class="optIn" for="colors">Colors<input onchange="colorsToggle()" type="checkbox" name="colors" checked="true"></label>
+  <div id="middle">
+
+    <div id="menus">
+
+    </div>
+    <div id="exampleColors"></div>
+    <div id="options">
+      <label class="optIn" for="letters">Letters<input onchange="lettersToggle()" type="checkbox" name="letters"></label>
+      <label class="optIn" for="numbers">Numbers<input onchange="numbersToggle()" type="checkbox" name="numbers"></label>
+      <label class="optIn" for="colors">Colors<input onchange="colorsToggle()" type="checkbox" name="colors" checked="true"></label>
+    </div>
+    <div id="patternGiven">
+    </div>
+    <a id="cap" href="/create.html">
+      Create your own pattern
+    </a>
   </div>
-  <div id="patternGiven">
+  <div id="right">
+
   </div>
-  <a id="cap" href="/create.html">
-    Create your own pattern
-  </a>
 </div>
 <script>
   const abcSoup = [

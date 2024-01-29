@@ -214,16 +214,16 @@
     }
     var w = document.getElementsByClassName("patternGivenPart");
     for (var i = 0; i < w.length; i++) {
-      w.style.height = pgHeight + "px";
-      w.style.width = pgWidth + "px";
-      w.style.margin = pgMargin + "px";
-      w.style.color = pgTextColor;
-      w.style.border = pgBorder;
+      w[i].style.height = pgHeight + "px";
+      w[i].style.width = pgWidth + "px";
+      w[i].style.margin = pgMargin + "px";
+      w[i].style.color = pgTextColor;
+      w[i].style.border = pgBorder;
     }
     var pgpTrueSize = pgHeight; // in px, does not include margin ect.
 
-    document.getElementById("patternGiven").style.width = (pgWidth * patternGiven[0].length) + "px";
-    document.getElementById("patternGiven").style.height = (pgHeight * patternGiven.length) + "px";
+    document.getElementById("patternGiven").style.width = ((pgWidth * 1 + (pgMargin * 2)) * patternGiven[0].length) + "px";
+    document.getElementById("patternGiven").style.height = ((pgHeight * 1 + (pgMargin * 2)) * patternGiven.length) + "px";
   }
   inputChange();
 

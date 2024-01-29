@@ -8,6 +8,15 @@
     width: 100%;
   }
 
+  #lmr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+  }
+
   #left {
     display: flex;
     justify-content: center;
@@ -99,33 +108,51 @@
     background-color: gray;
   }
 
+  .pgpInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 5px;
+    width: calc(100% + 0px);
+  }
+
+  .pgpInput>input {
+    width: 50px;
+    margin-left: 10px;
+  }
+
 </style>
 <div id="content">
   <h1>
     25HoursaDay: Patterns
   </h1>
-  <div id="left">
+  <div id="lmr">
 
-  </div>
-  <div id="middle">
 
-    <div id="menus">
+    <div id="left">
+      <label class="pgpInput" for="pgHeight">Height:<input id="pgHeight" name="pgHeight" onChange="inputChange()" value="30px"></label>
+      <label class="pgpInput" for="pgWidth">Width:<input id="pgWidth" name="pgWidth" onChange="inputChange()" value="30px"></label>
+      <label class="pgpInput" for="pgMargin">Margin:<input id="pgMargin" name="pgMargin" onChange="inputChange()" value="0px"></label>
+      <label class="pgpInput" for="pgTextColor">Text Color:<input id="pgTextColor" name="pgTextColor" onChange="inputChange()" value="white"></label>
+      <label class="pgpInput" for="pgBorder">Border: <input id="pgBorder" name="pgBorder" onChange="inputChange()" value="none"></label>
+    </div>
+    <div id="middle">
+
+      <div id="exampleColors"></div>
+      <div id="options">
+        <label class="optIn" for="letters">Letters<input onchange="lettersToggle()" type="checkbox" name="letters"></label>
+        <label class="optIn" for="numbers">Numbers<input onchange="numbersToggle()" type="checkbox" name="numbers"></label>
+        <label class="optIn" for="colors">Colors<input onchange="colorsToggle()" type="checkbox" name="colors" checked="true"></label>
+      </div>
+      <div id="patternGiven">
+      </div>
+      <a id="cap" href="/create.html">
+        Create your own pattern
+      </a>
+    </div>
+    <div id="right">
 
     </div>
-    <div id="exampleColors"></div>
-    <div id="options">
-      <label class="optIn" for="letters">Letters<input onchange="lettersToggle()" type="checkbox" name="letters"></label>
-      <label class="optIn" for="numbers">Numbers<input onchange="numbersToggle()" type="checkbox" name="numbers"></label>
-      <label class="optIn" for="colors">Colors<input onchange="colorsToggle()" type="checkbox" name="colors" checked="true"></label>
-    </div>
-    <div id="patternGiven">
-    </div>
-    <a id="cap" href="/create.html">
-      Create your own pattern
-    </a>
-  </div>
-  <div id="right">
-
   </div>
 </div>
 <script>

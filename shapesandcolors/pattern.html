@@ -135,6 +135,9 @@
       <label class="pgpInput" for="pgMargin">Margin:<input id="pgMargin" name="pgMargin" onChange="inputChange()" value="0"></label>
       <label class="pgpInput" for="pgTextColor">Text Color:<input id="pgTextColor" name="pgTextColor" onChange="inputChange()" value="white"></label>
       <label class="pgpInput" for="pgBorder">Border: <input id="pgBorder" name="pgBorder" onChange="inputChange()" value="none"></label>
+      <p>
+        To fix the font size after changing the height and/or width, double click any option that change the text.
+      </p>
     </div>
     <div id="middle">
 
@@ -211,6 +214,7 @@
     var w = document.getElementsByClassName("patternGivenPart");
     for (var i = 0; i < w.length; i++) {
       w[i].style.height = inputVals[0] * 1 + "px";
+      w[i].style.lineHeight = inputVals[0] * 1 + "px";
       w[i].style.width = inputVals[1] * 1 + "px";
       w[i].style.margin = inputVals[2] * 1 + "px";
       w[i].style.color = inputVals[3] + "";
@@ -254,7 +258,6 @@
       } else {
         var tempVar1 = x[i].getAttribute("numval").toString().split("").length;
       }
-
       x[i].style.fontSize = "" + ((inputVals[0] * 1 / (tempVar1 + 1)) * 2) + "px";
     }
   }

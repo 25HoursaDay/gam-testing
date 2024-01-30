@@ -201,32 +201,26 @@
     "deeppink", "coral", "navajowhite", "yellow", "aquamarine", "cyan", "dodgerblue", "magenta", "pink", "mistyrose"
   ];
   var ecpSize = 30; // in px, includes margin and ect. so 30 is 20px + 5px * 2 for margin
+  const inputVals = [0, 0, 0, 0, 0];
+
   function inputChange() {
     for (var i = 0; i < document.getElementsByClassName("pgpInput").length; i++) {
-      console.log(i);
       var x = document.getElementsByClassName("pgpInput")[i].children[0].value;
-      console.log(x);
-      var pgHeight = (i == 0) ? x : pgHeight;
-      var pgWidth = (i == 1) ? x : pgWidth;
-      var pgMargin = (i == 2) ? x : pgMargin;
-      var pgTextColor = (i == 3) ? x : pgTextColor;
-      var pgBorder = (i == 4) ? x : pgBorder;
+      inputVals[i] = x;
     }
     var w = document.getElementsByClassName("patternGivenPart");
     for (var i = 0; i < w.length; i++) {
-      w[i].style.height = pgHeight + "px";
-      w[i].style.width = pgWidth + "px";
-      w[i].style.margin = pgMargin + "px";
-      w[i].style.color = pgTextColor;
-      w[i].style.border = pgBorder;
+      w[i].style.height = inputVals[0] * 1 + "px";
+      w[i].style.width = inputVals[1] * 1 + "px";
+      w[i].style.margin = inputVals[2] * 1 + "px";
+      w[i].style.color = inputVals[3] + "";
+      w[i].style.border = inputVals[4] + "";
     }
-    var pgpTrueSize = pgHeight; // in px, does not include margin ect.
 
-    document.getElementById("patternGiven").style.width = ((pgWidth * 1 + (pgMargin * 2)) * patternGiven[0].length) + "px";
-    document.getElementById("patternGiven").style.height = ((pgHeight * 1 + (pgMargin * 2)) * patternGiven.length) + "px";
+    document.getElementById("patternGiven").style.width = ((inputVals[1] * 1 * 1 + (inputVals[2] * 1 * 2)) * patternGiven[0].length) + "px";
+    document.getElementById("patternGiven").style.height = ((inputVals[0] * 1 * 1 + (inputVals[2] * 1 * 2)) * patternGiven.length) + "px";
   }
   inputChange();
-
 
   for (var x = 0; x < colorOpts.length; x++) {
     var exampleColorsPart = document.createElement("span");
@@ -236,8 +230,6 @@
   }
   document.getElementById("exampleColors").style.width = (ecpSize * colorOpts.length);
   document.getElementById("exampleColors").style.height = (ecpSize + "px");
-
-
 
   // var difficulty = 1;
   // 1 = easy, 2 = medium, 3 = hard
@@ -262,7 +254,8 @@
       } else {
         var tempVar1 = x[i].getAttribute("numval").toString().split("").length;
       }
-      x[i].style.fontSize = "" + ((pgpTrueSize / (tempVar1 + 1)) * 2) + "px";
+
+      x[i].style.fontSize = "" + ((inputVals[0] * 1 / (tempVar1 + 1)) * 2) + "px";
     }
   }
 

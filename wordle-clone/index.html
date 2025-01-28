@@ -122,14 +122,14 @@
     background-color: yellow;
     border-color: gold;
     color: white;
-    border-style: block;
+    border-style: block
   }
 
   .correct {
     background-color: green;
     border-color: limegreen;
     color: white;
-    border-style: block;
+    border-style: block
   }
 
   .losepopup,
@@ -155,30 +155,23 @@
   .space {
     margin-left: 71px;
   }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <dialog id="winpopup" class="winpopup">
-  <button
-    class="closemodal"
-    onclick='document.getElementById("winpopup").classList.remove("showpopup")'
-  >
-    X
-  </button>
+  <button class="closemodal" onclick='document.getElementById("winpopup").classList.remove("showpopup")'>X</button>
   <h1 id="winpopuphead" class="winpopuphead">Congrats!</h1>
   <p id="winpopupdesc" class="winpopupdesc"></p>
 </dialog>
 <dialog id="losepopup" class="losepopup">
-  <button
-    class="closemodal"
-    onclick='document.getElementById("losepopup").classList.remove("showpopup")'
-  >
-    X
-  </button>
+  <button class="closemodal" onclick='document.getElementById("losepopup").classList.remove("showpopup")'>X</button>
   <h1 id="losepopuphead" class="losepopuphead">You Lost.</h1>
   <p id="losepopupdesc" class="losepopupdesc"></p>
 </dialog>
 <div id="centerdiv">
-  <h1 id="title">Title Of Wordle Clone</h1>
+  <h1 id="title">
+    Title Of Wordle Clone
+  </h1>
   <div id="letterparent">
     <div class="row"></div>
     <div class="row"></div>
@@ -189,65 +182,50 @@
   </div>
   <div class="keyboard">
     <div class="keyboardsplit">
-      <button class="input">Q</button><button class="input">W</button
-      ><button class="input">E</button><button class="input">R</button
-      ><button class="input">T</button><button class="input">Y</button
-      ><button class="input">U</button><button class="input">I</button
-      ><button class="input">O</button><button class="input">P</button>
+      <button class="input">Q</button><button class="input">W</button><button class="input">E</button><button class="input">R</button><button class="input">T</button><button class="input">Y</button><button class="input">U</button><button class="input">I</button><button class="input">O</button><button class="input">P</button>
     </div>
     <div class="keyboardsplit">
-      <button class="input">A</button><button class="input">S</button
-      ><button class="input">D</button><button class="input">F</button
-      ><button class="input">G</button><button class="input">H</button
-      ><button class="input">J</button><button class="input">K</button
-      ><button class="input">L</button>
+      <button class="input">A</button><button class="input">S</button><button class="input">D</button><button class="input">F</button><button class="input">G</button><button class="input">H</button><button class="input">J</button><button class="input">K</button><button class="input">L</button>
     </div>
     <div class="keyboardsplit">
-      <button id="enter" class="enter" onclick="enterClick()">Enter</button
-      ><button class="input">Z</button><button class="input">X</button
-      ><button class="input">C</button><button class="input">V</button
-      ><button class="input">B</button><button class="input">N</button
-      ><button class="input">M</button
-      ><button id="delete" class="delete" onclick="deleteClick()">Back</button>
+      <button id="enter" class="enter" onclick="enterClick()">Enter</button><button class="input">Z</button><button class="input">X</button><button class="input">C</button><button class="input">V</button><button class="input">B</button><button class="input">N</button><button class="input">M</button><button id="delete" class="delete" onclick="deleteClick()">Back</button>
     </div>
   </div>
 </div>
 <script>
-  var abletoplay = false
-  var uncutWord = "horse".toUpperCase()
-  var word = uncutWord.replace(" ", "")
-  var wordlength = word.length
-  var guessesUsed = 0
-  const inputlist = []
-  var guesses = []
+  var abletoplay = false;
+  var uncutWord = "horse".toUpperCase();
+  var word = uncutWord.replace(" ", "");
+  var wordlength = word.length;
+  var guessesUsed = 0;
+  const inputlist = [];
+  var guesses = [];
 
   for (var x = 0; x < 6; x++) {
-    var tempcutWord = uncutWord.toUpperCase()
+    var tempcutWord = uncutWord.toUpperCase();
     for (var i = 0; i < wordlength; i++) {
-      if (
-        document.getElementsByClassName("row")[x].children.length < word.length
-      ) {
-        var spanadjust = document.createElement("span")
-        spanadjust.innerText = " "
-        spanadjust.classList.add("letter")
-        document.getElementsByClassName("row")[x].append(spanadjust)
+      if (document.getElementsByClassName("row")[x].children.length < word.length) {
+        var spanadjust = document.createElement("span");
+        spanadjust.innerText = " ";
+        spanadjust.classList.add("letter");
+        document.getElementsByClassName("row")[x].append(spanadjust);
 
         if (tempcutWord[i] == " ") {
-          var spaceLoc = tempcutWord.indexOf(" ")
-          spanadjust.classList.add("space")
-          var tempcutWord = tempcutWord.split("")
-          tempcutWord.splice(spaceLoc, 1, ".")
-          tempcutWord = tempcutWord.join("")
-          tempcutWord = tempcutWord.toString()
+          var spaceLoc = tempcutWord.indexOf(" ");
+          spanadjust.classList.add("space");
+          var tempcutWord = tempcutWord.split('');
+          tempcutWord.splice(spaceLoc, 1, ".");
+          tempcutWord = tempcutWord.join('');
+          tempcutWord = tempcutWord.toString();
         }
       }
     }
   }
-  document.getElementsByClassName("letter")[0].classList.add("lastletter")
-  abletoplay = true
+  document.getElementsByClassName("letter")[0].classList.add("lastletter");
+  abletoplay = true;
 
   for (var i = 0; i < document.getElementsByClassName("input").length; i++) {
-    ygu(i)
+    ygu(i);
   }
 
   var keyChecks = [
@@ -278,261 +256,173 @@
     "y",
     "z",
     "enter",
-    "backspace",
-  ]
+    "backspace"
+  ];
 
   window.addEventListener("keydown", (e) => {
     if (keyChecks.toString().includes(e.key.toLowerCase())) {
-      doodoo(e.key.toLowerCase())
+      doodoo(e.key.toLowerCase());
     }
-  })
+  });
 
   function newletter(type) {
-    if (inputlist.length > wordlength - 1) {
-      inputlist.pop()
-      document.getElementsByClassName("letter")[
-        guessesUsed * wordlength + (wordlength - 1)
-      ].innerText = " "
-      inputlist.push(type)
-      document.getElementsByClassName("letter")[
-        guessesUsed * wordlength + (wordlength - 1)
-      ].innerText = inputlist[wordlength - 1]
+    if (inputlist.length > (wordlength - 1)) {
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = " ";
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (wordlength - 1)].innerText = (inputlist[(wordlength - 1)]);
     } else {
-      inputlist.push(type)
-      document.getElementsByClassName("letter")[
-        guessesUsed * wordlength + (inputlist.length - 1)
-      ].innerText = inputlist[inputlist.length - 1]
-      if (inputlist.length > wordlength - 1) {
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + (inputlist.length - 2)
-          ].classList.remove("lastletter")
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + (inputlist.length - 1)
-          ].classList.add("lastletter")
+      inputlist.push(type);
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].innerText = (inputlist[inputlist.length - 1]);
+      if (inputlist.length > (wordlength - 1)) {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 2)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.add("lastletter");
       } else {
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + (inputlist.length - 1)
-          ].classList.remove("lastletter")
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + inputlist.length
-          ].classList.add("lastletter")
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length - 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
       }
     }
   }
 
   function ygu(x) {
-    document
-      .getElementsByClassName("input")
-      [x].addEventListener("click", function () {
-        letterClick(this.innerText)
-      })
+    document.getElementsByClassName("input")[x].addEventListener("click", function() {
+      letterClick(this.innerText);
+    });
   }
 
   function letterClick(foo) {
     if (abletoplay == true) {
-      newletter(foo)
+      newletter(foo);
     }
   }
 
   function deleteClick() {
     if (abletoplay == true) {
-      inputlist.pop()
-      document.getElementsByClassName("letter")[
-        guessesUsed * wordlength + inputlist.length
-      ].innerText = " "
-      if (!inputlist.length > wordlength - 1) {
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + (inputlist.length + 1)
-          ].classList.remove("lastletter")
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + inputlist.length
-          ].classList.add("lastletter")
+      inputlist.pop();
+      document.getElementsByClassName("letter")[(guessesUsed * wordlength) + inputlist.length].innerText = " ";
+      if (!inputlist.length > (wordlength - 1)) {
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
       } else {
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + (inputlist.length + 1)
-          ].classList.remove("lastletter")
-        document
-          .getElementsByClassName("letter")
-          [
-            guessesUsed * wordlength + inputlist.length
-          ].classList.add("lastletter")
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length + 1)].classList.remove("lastletter");
+        document.getElementsByClassName("letter")[(guessesUsed * wordlength) + (inputlist.length)].classList.add("lastletter");
       }
     }
-  }
+  };
 
   function enterClick() {
     if (abletoplay == true) {
-      var wordstring = word.toString()
-      var buh = inputlist.join("")
+      var wordstring = word.toString();
+      var buh = inputlist.join("");
       if (buh.length == wordlength && guessesUsed < 6) {
         // check for validity
-        const data = null
-        const xhr = new XMLHttpRequest()
-        xhr.onreadystatechange = function () {
+        const data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
           if (xhr.readyState === 4) {
-            var response = JSON.parse(xhr.responseText)
+            var response = JSON.parse(xhr.responseText);
             if (xhr.status === 200) {
               // IF SUCCESS
-              console.log(this.responseText)
-              console.log("successful")
-              guesses.push(buh)
-              for (
-                var i = guessesUsed * wordlength;
-                i < guessesUsed * wordlength + wordlength;
-                i++
-              ) {
-                document.getElementsByClassName("letter")[i].innerText =
-                  buh[i - guessesUsed * wordlength]
-                if (word.includes(buh[i - guessesUsed * wordlength])) {
-                  if (
-                    word[i - guessesUsed * wordlength] ==
-                    buh[i - guessesUsed * wordlength]
-                  ) {
-                    document
-                      .getElementsByClassName("letter")
-                      [i].classList.add("correct")
-                    inputchange(
-                      document.getElementsByClassName("letter")[i].innerText,
-                      "correct",
-                    )
-                    wordstring = wordstring.replace(
-                      buh[i - guessesUsed * wordlength],
-                      "",
-                    )
+              console.log(this.responseText);
+              console.log('successful');
+              guesses.push(buh);
+              for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+                document.getElementsByClassName("letter")[i].innerText = buh[i - (guessesUsed * wordlength)];
+                if (word.includes(buh[i - (guessesUsed * wordlength)])) {
+                  if (word[i - (guessesUsed * wordlength)] == buh[i - (guessesUsed * wordlength)]) {
+                    document.getElementsByClassName("letter")[i].classList.add("correct");
+                    inputchange(document.getElementsByClassName("letter")[i].innerText, "correct");
+                    wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
                   }
                 } else {
-                  document
-                    .getElementsByClassName("letter")
-                    [i].classList.add("noletter")
-                  inputchange(
-                    document.getElementsByClassName("letter")[i].innerText,
-                    "noletter",
-                  )
-                  wordstring = wordstring.replace(
-                    buh[i - guessesUsed * wordlength],
-                    "",
-                  )
+                  document.getElementsByClassName("letter")[i].classList.add("noletter");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
+                  wordstring = wordstring.replace((buh[i - (guessesUsed * wordlength)]), "");
                 }
               }
-              for (
-                var i = guessesUsed * wordlength;
-                i < guessesUsed * wordlength + wordlength;
-                i++
-              ) {
-                if (wordstring.includes(buh[i - guessesUsed * wordlength])) {
-                  document
-                    .getElementsByClassName("letter")
-                    [i].classList.add("wrongspot")
-                  inputchange(
-                    document.getElementsByClassName("letter")[i].innerText,
-                    "wrongspot",
-                  )
-                  wordstring = wordstring.replace(
-                    buh[i - guessesUsed * wordlength],
-                    "",
-                  )
+              for (var i = (guessesUsed * wordlength); i < ((guessesUsed * wordlength) + wordlength); i++) {
+                if (wordstring.includes(buh[i - (guessesUsed * wordlength)])) {
+                  document.getElementsByClassName("letter")[i].classList.add("wrongspot");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "wrongspot");
+                  wordstring = wordstring.replace(buh[i - (guessesUsed * wordlength)], "");
                   // console.log(wordstring);
                 } else {
-                  document
-                    .getElementsByClassName("letter")
-                    [i].classList.add("noletter")
-                  inputchange(
-                    document.getElementsByClassName("letter")[i].innerText,
-                    "noletter",
-                  )
+                  document.getElementsByClassName("letter")[i].classList.add("noletter");
+                  inputchange(document.getElementsByClassName("letter")[i].innerText, "noletter");
                 }
               }
 
-              console.log("you guessed: " + guesses[guessesUsed++])
-              console.log(guessesUsed + " guesses used")
+              console.log("you guessed: " + guesses[guessesUsed++]);
+              console.log(guessesUsed + " guesses used");
 
               if (buh == word) {
-                winner(guessesUsed)
+                winner(guessesUsed);
               } else {
                 if (guessesUsed > 5) {
-                  loser()
+                  loser();
                 }
                 // reset inputlist
-                inputlist.length = 0
+                inputlist.length = 0;
               }
             } else {
               console.log("Fail, not a word")
             }
           }
         }
-        xhr.open(
-          "GET",
-          "https://api.dictionaryapi.dev/api/v2/entries/en/" + buh,
-        )
-        xhr.send(data)
+        xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/' + buh);
+        xhr.send(data);
         // end check
       } else {
-        console.log("word is less than " + wordlength + " letters.")
+        console.log("word is less than " + wordlength + " letters.");
       }
     }
-  }
+  };
 
   function winner(attempts) {
-    abletoplay = false
-    console.log(
-      "You guessed the word " + word + " in " + attempts + " attempts",
-    )
-    document.getElementById("delete").onclick = ""
-    document.getElementById("enter").onclick = ""
-    let winpopup = document.getElementById("winpopup")
-    let winpopuphead = document.getElementById("winpopuphead")
-    let winpopupdesc = document.getElementById("winpopupdesc")
-    winpopup.open = true
-    winpopuphead.innerText = "Congratulations!"
-    winpopupdesc.innerText =
-      "You guessed the word " + word + " in " + attempts + " attempt(s)."
-    winpopup.classList.add("showpopup")
+    abletoplay = false;
+    console.log("You guessed the word " + word + " in " + attempts + " attempts");
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    let winpopup = document.getElementById("winpopup");
+    let winpopuphead = document.getElementById("winpopuphead");
+    let winpopupdesc = document.getElementById("winpopupdesc");
+    winpopup.open = true;
+    winpopuphead.innerText = "Congratulations!";
+    winpopupdesc.innerText = "You guessed the word " + word + " in " + attempts + " attempt(s).";
+    winpopup.classList.add("showpopup");
   }
 
   function loser() {
-    abletoplay = false
-    console.log("The word was " + word + ".")
-    document.getElementById("delete").onclick = ""
-    document.getElementById("enter").onclick = ""
-    let losepopup = document.getElementById("losepopup")
-    let losepopuphead = document.getElementById("losepopuphead")
-    let losepopupdesc = document.getElementById("losepopupdesc")
-    losepopup.open = true
-    losepopuphead.innerText = "You Lost."
-    losepopupdesc.innerText = "The word was " + word + "."
-    losepopup.classList.add("showpopup")
+    abletoplay = false;
+    console.log("The word was " + word + ".");
+    document.getElementById("delete").onclick = "";
+    document.getElementById("enter").onclick = "";
+    let losepopup = document.getElementById("losepopup");
+    let losepopuphead = document.getElementById("losepopuphead");
+    let losepopupdesc = document.getElementById("losepopupdesc");
+    losepopup.open = true;
+    losepopuphead.innerText = "You Lost.";
+    losepopupdesc.innerText = "The word was " + word + ".";
+    losepopup.classList.add("showpopup");
   }
 
   function inputchange(term, changeto) {
     for (const x of document.querySelectorAll(".input")) {
       if (x.textContent.includes(term)) {
-        x.classList.add(changeto)
+        x.classList.add(changeto);
       }
     }
   }
 
   function doodoo(foo) {
-    console.log(foo)
+    console.log(foo);
     if (foo == "enter") {
-      enterClick()
+      enterClick();
     } else if (foo == "backspace") {
-      deleteClick()
+      deleteClick();
     } else {
-      letterClick(foo.toUpperCase())
+      letterClick(foo.toUpperCase());
     }
   }
+
 </script>
